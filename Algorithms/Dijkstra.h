@@ -14,7 +14,7 @@ inline GigaKomarVector<cv::Point> findShortestPathDijkstra(GigaKomarVector<Node>
     std::set<Node*, GraphDistanceSorter> unusedNodes(sorter);
     for (int i = 0; i < graph.GetSize(); ++i)
     {
-        unusedNodes.insert(graph.GetData(i));
+        unusedNodes.insert(&graph[i]);
     }
 
     while (unusedNodes.size() > 0)
@@ -24,7 +24,7 @@ inline GigaKomarVector<cv::Point> findShortestPathDijkstra(GigaKomarVector<Node>
         {
             return { };
         }
-        if (currentNode == graph.GetData(destNodeIndex))
+        if (currentNode == &graph[destNodeIndex])
         {
             break;
         }

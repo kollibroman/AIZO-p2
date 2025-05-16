@@ -19,11 +19,11 @@ public:
     double distance;
     Node* predecessor;
     GigaKomarVector<Connection> connections;
-};
 
-inline bool operator==(const Node &lhs, const Node &rhs)
-{
-    return lhs.point == rhs.point;
-}
+    bool operator==(const Node &lhs, const Node &rhs) const
+    {
+        return lhs.point == rhs.point;
+    }
+};
 
 #endif //NODE_H
