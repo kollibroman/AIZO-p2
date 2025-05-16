@@ -1,0 +1,4 @@
+#ifndef FORDFULKERSON_H
+#define FORDFULKERSON_H
+
+#endif //FORDFULKERSON_H
