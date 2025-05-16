@@ -1,20 +1,16 @@
 #ifndef GIGAKOMARVECTOR_H
 #define GIGAKOMARVECTOR_H
-#include
-#include
-#include
-#include
 
 template<class T>
-class GigaKomarVector {
+class BigDVector {
 private:
     T* arr;
     int capacity;
     int current;
 
 public:
-    explicit GigaKomarVector(int initial_capacity = 4);
-    ~GigaKomarVector();
+    explicit BigDVector(int initial_capacity = 4);
+    ~BigDVector();
 
     T& operator[](int index);
     const T& operator[](int index) const;
@@ -33,32 +29,32 @@ public:
 };
 
 template<class T>
-GigaKomarVector<T>::GigaKomarVector(int initial_capacity)
+BigDVector<T>::BigDVector(int initial_capacity)
     : capacity(initial_capacity), current(0)
 {
     arr = new T[capacity];
 }
 
 template<class T>
-GigaKomarVector<T>::~GigaKomarVector()
+BigDVector<T>::~BigDVector()
 {
     delete[] arr;
 }
 
 template<class T>
-T& GigaKomarVector<T>::operator[](int index)
+T& BigDVector<T>::operator[](int index)
 {
     return arr[index];
 }
 
 template<class T>
-const T& GigaKomarVector<T>::operator[](int index) const
+const T& BigDVector<T>::operator[](int index) const
 {
     return arr[index];
 }
 
 template<class T>
-void GigaKomarVector<T>::Push(const T& data)
+void BigDVector<T>::Push(const T& data)
 {
     if (current == capacity)
     {
@@ -76,7 +72,7 @@ void GigaKomarVector<T>::Push(const T& data)
 }
 
 template<class T>
-void GigaKomarVector<T>::PushData(const T& data, int index)
+void BigDVector<T>::PushData(const T& data, int index)
 {
     if (index >= current)
     {
@@ -102,7 +98,7 @@ void GigaKomarVector<T>::PushData(const T& data, int index)
 }
 
 template<class T>
-void GigaKomarVector<T>::PopData()
+void BigDVector<T>::PopData()
 {
     if (current > 0)
     {
@@ -111,43 +107,43 @@ void GigaKomarVector<T>::PopData()
 }
 
 template<class T>
-T & GigaKomarVector<T>::GetData(int index)
+T & BigDVector<T>::GetData(int index)
 {
     return arr[index];
 }
 
 template<class T>
-const T& GigaKomarVector<T>::GetData(int index) const
+const T& BigDVector<T>::GetData(int index) const
 {
     return arr[index];
 }
 
 template<class T>
-int GigaKomarVector<T>::GetSize() const
+int BigDVector<T>::GetSize() const
 {
     return current;
 }
 
 template<class T>
-int GigaKomarVector<T>::GetCapacity() const
+int BigDVector<T>::GetCapacity() const
 {
     return capacity;
 }
 
 template<class T>
-bool GigaKomarVector<T>::Empty() const
+bool BigDVector<T>::Empty() const
 {
     return current == 0;
 }
 
 template<class T>
-void GigaKomarVector<T>::Clear()
+void BigDVector<T>::Clear()
 {
     current = 0;
 }
 
 template<class T>
-void GigaKomarVector<T>::Print() const
+void BigDVector<T>::Print() const
 {
     for (int i = 0; i < current; i++)
     {

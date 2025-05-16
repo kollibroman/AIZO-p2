@@ -7,7 +7,7 @@ add_executable(Projekt2 main.cpp
         Infrastructure/Node.h
         Infrastructure/Connection.h
         Algorithms/Dijkstra.h
-        Utils/GigaKomarVector.h
+        Utils/BigDVector.h
         Algorithms/Kruskal.h
         Algorithms/Prim.h
         Algorithms/BellmanFord.h

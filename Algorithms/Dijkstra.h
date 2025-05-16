@@ -1,13 +1,13 @@
 #ifndef DIJKSTRA_H
 #define DIJKSTRA_H
-#include "../Utils/GigaKomarVector.h"
+#include "../Utils/BigDVector.h"
 #include <opencv4/opencv2/core/types.hpp>
 #include <set>
 #include "../Infrastructure/Node.h"
 
 struct GraphDistanceSorter;
 
-inline GigaKomarVector<cv::Point> findShortestPathDijkstra(GigaKomarVector<Node>& graph, int startNodeIndex, int destNodeIndex)
+inline BigDVector<cv::Point> findShortestPathDijkstra(BigDVector<Node>& graph, int startNodeIndex, int destNodeIndex)
 {
     GraphDistanceSorter sorter(graph);
 
@@ -49,7 +49,7 @@ inline GigaKomarVector<cv::Point> findShortestPathDijkstra(GigaKomarVector<Node>
     }
 
     //now trace back the path as a list of points
-    GigaKomarVector<cv::Point> points;
+    BigDVector<cv::Point> points;
     Node* current = &graph[destNodeIndex];
 
     points.Push(current->point);

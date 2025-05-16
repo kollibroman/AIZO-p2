@@ -3,7 +3,7 @@
 
 #include <opencv4/opencv2/core/types.hpp>
 #include "Connection.h"
-#include "../Utils/GigaKomarVector.h"
+#include "../Utils/BigDVector.h"
 
 class Node
 {
@@ -18,7 +18,7 @@ public:
 
     double distance;
     Node* predecessor;
-    GigaKomarVector<Connection> connections;
+    BigDVector<Connection> connections;
 
     bool operator==(const Node &lhs, const Node &rhs) const
     {

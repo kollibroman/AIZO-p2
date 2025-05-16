@@ -3,11 +3,11 @@
 
 #include "../Infrastructure/Edge.h"
 #include "../Infrastructure/Node.h"
-#include "../Utils/GigaKomarVector.h"
+#include "../Utils/BigDVector.h"
 
 struct Edge;
 // Find set of vertex i
-inline Node* findSet(const Node* node, GigaKomarVector<Node*>& parent)
+inline Node* findSet(const Node* node, BigDVector<Node*>& parent)
 {
     if (node != parent[node->point.x])
     {
@@ -17,7 +17,7 @@ inline Node* findSet(const Node* node, GigaKomarVector<Node*>& parent)
 }
 
 // Union of two sets
-inline void unionSets(Node* x, Node* y, GigaKomarVector<Node*>& parent)
+inline void unionSets(Node* x, Node* y, BigDVector<Node*>& parent)
 {
     Node* px = findSet(x, parent);
     Node* py = findSet(y, parent);
@@ -25,7 +25,7 @@ inline void unionSets(Node* x, Node* y, GigaKomarVector<Node*>& parent)
 }
 
 // Partition function for QuickSort
-inline int partition(GigaKomarVector<Edge>& edges, int low, int high)
+inline int partition(BigDVector<Edge>& edges, int low, int high)
 {
     Edge* pivot = &edges[high];
     int i = low - 1;
@@ -48,7 +48,7 @@ inline int partition(GigaKomarVector<Edge>& edges, int low, int high)
     return i + 1;
 }
 
-inline void quickSort(GigaKomarVector<Edge>& edges, int low, int high)
+inline void quickSort(BigDVector<Edge>& edges, int low, int high)
 {
     if (low < high)
     {
@@ -58,11 +58,11 @@ inline void quickSort(GigaKomarVector<Edge>& edges, int low, int high)
     }
 }
 
-inline GigaKomarVector<Connection> findMSTKruskal(GigaKomarVector<Node>& graph)
+inline BigDVector<Connection> findMSTKruskal(BigDVector<Node>& graph)
 {
-    GigaKomarVector<Connection> mst;
-    GigaKomarVector<Edge> edges;
-    GigaKomarVector<Node*> parent;
+    BigDVector<Connection> mst;
+    BigDVector<Edge> edges;
+    BigDVector<Node*> parent;
 
     // Initialize parent array for disjoint set
     for (int i = 0; i < graph.GetSize(); i++)

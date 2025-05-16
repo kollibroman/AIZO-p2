@@ -2,7 +2,7 @@
 #define PRIM_H
 
 #include "../Infrastructure/Node.h"
-#include "../Utils/GigaKomarVector.h"
+#include "../Utils/BigDVector.h"
 
 class PrimNode
 {
@@ -16,7 +16,7 @@ public:
     explicit PrimNode(Node* n) : node(n), key(999999.0), visited(false) {}
 };
 
-inline int findMinKeyNode(GigaKomarVector<PrimNode>& nodes)
+inline int findMinKeyNode(BigDVector<PrimNode>& nodes)
 {
     double minKey = 999999.0;
     int minIndex = -1;
@@ -34,7 +34,7 @@ inline int findMinKeyNode(GigaKomarVector<PrimNode>& nodes)
     return minIndex;
 }
 
-inline GigaKomarVector<Connection> findMSTPrim(GigaKomarVector<Node>& graph, int startVertex)
+inline BigDVector<Connection> findMSTPrim(BigDVector<Node>& graph, int startVertex)
 {
     if (graph.GetSize() == 0)
     {
@@ -42,10 +42,10 @@ inline GigaKomarVector<Connection> findMSTPrim(GigaKomarVector<Node>& graph, int
     }
 
     // Initialize result MST
-    GigaKomarVector<Connection> mst;
+    BigDVector<Connection> mst;
 
     // Create auxiliary array for Prim's algorithm
-    GigaKomarVector<PrimNode> primNodes;
+    BigDVector<PrimNode> primNodes;
 
     // Initialize all vertices
     for (int i = 0; i < graph.GetSize(); i++)
