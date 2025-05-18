@@ -1,182 +1,113 @@
 #ifndef FORDFULKERSON_H
 #define FORDFULKERSON_H
 
-#include "../Infrastructure/Node.h"
-#include "../Utils/BigDVector.h"
+#include "../Utils/Node.h"
+#include "../Utils/DefinitelyNotADataStructures/DefinitelyNotAVector.h"
+#include "../Utils/DefinitelyNotADataStructures/DefinitelyNotAQueue.h"
+#include "../Utils/Representations/AdjacencyList.h"
 
-// Structure to store flow information for each edge
-struct FlowEdge
-{
-    Node* from;
-    Node* to;
-    double capacity;
-    double flow;
+template<typename GraphType>
+    static FlowResult fordFulkerson(const GraphType& graph, int source, int sink) {
+        int V = graph.getVertexCount();
+        FlowResult result;
 
-    FlowEdge(Node* f, Node* t, double c)
-        : from(f), to(t), capacity(c), flow(0) {}
-};
+        // Create residual graph
+        DefinitelyNotAVector<DefinitelyNotAVector<int>> residual(V, DefinitelyNotAVector<int>(V, 0));
 
-// Structure to keep track of residual graph edges
-class ResidualGraph {
-private:
-    BigDVector<FlowEdge> edges;
-
-public:
-    void addEdge(Node* from, Node* to, double capacity)
-    {
-        edges.Push(FlowEdge(from, to, capacity));
-        edges.Push(FlowEdge(to, from, 0)); // Reverse edge for residual flow
-    }
-
-    FlowEdge* getEdge(Node* from, Node* to)
-    {
-        for (int i = 0; i < edges.GetSize(); i++)
-        {
-            FlowEdge* edge = &edges[i];
-            if (edge->from == from && edge->to == to)
-            {
-                return edge;
+        // Initialize residual graph
+        if constexpr (std::is_same_v<GraphType, AdjacencyList>) {
+            for (int u = 0; u < V; u++) {
+                for (const auto& edge : graph.getAdjacent(u)) {
+                    residual[u][edge.destination] = edge.weight;
+                }
             }
-        }
-        return nullptr;
-    }
-
-    double getResidualCapacity(Node* from, Node* to)
-    {
-        FlowEdge* forward = getEdge(from, to);
-        if (forward)
-        {
-            return forward->capacity - forward->flow;
-        }
-        return 0;
-    }
-
-    void updateFlow(Node* from, Node* to, double additionalFlow)
-    {
-        FlowEdge* forward = getEdge(from, to);
-        FlowEdge* backward = getEdge(to, from);
-
-        if (forward && backward) {
-            forward->flow += additionalFlow;
-            backward->flow -= additionalFlow;
-        }
-    }
-};
-
-// Finds a path from source to sink using BFS
-bool findPath(BigDVector<Node>& graph, ResidualGraph& residual,
-             Node* source, Node* sink, BigDVector<Node*>& path)
-{
-
-    // Reset all nodes
-    for (int i = 0; i < graph.GetSize(); i++)
-    {
-        Node* node = &graph[i];
-        node->predecessor = nullptr;
-        node->distance = -1; // Using distance as visited flag
-    }
-
-    // Initialize BFS
-    BigDVector<Node*> queue;
-    source->distance = 0;
-    queue.Push(source);
-
-    // BFS to find a path
-    while (queue.GetSize() > 0)
-    {
-        Node* current = queue[0];
-
-        // Remove first element (dequeue)
-        for (int i = 1; i < queue.GetSize(); i++)
-        {
-            *queue[i- 1] = *queue[i];
-        }
-        queue.PopData();
-
-        // Check all neighbors
-        for (int i = 0; i < current->connections.GetSize(); i++)
-        {
-            Connection* conn = &current->connections[i];
-            Node* next = conn->ptr;
-
-            if (next->distance == -1 && residual.getResidualCapacity(current, next) > 0)
-            {
-                next->predecessor = current;
-                next->distance = current->distance + 1;
-                queue.Push(next);
-
-                if (next == sink) {
-                    // Construct path
-                    Node* pathNode = sink;
-                    while (pathNode != nullptr) {
-                        path.Push(pathNode);
-                        pathNode = pathNode->predecessor;
+        } else {  // AdjacencyMatrix
+            for (int u = 0; u < V; u++) {
+                for (int v = 0; v < V; v++) {
+                    int weight = graph.getWeight(u, v);
+                    if (weight != graph.getNoEdgeValue()) {
+                        residual[u][v] = weight;
                     }
-                    return true;
                 }
             }
         }
-    }
 
-    return false;
-}
+        DefinitelyNotAVector<int> parent(V);
 
-// Main Ford-Fulkerson algorithm
-inline double findMaxFlow(BigDVector<Node>& graph, int sourceIndex, int sinkIndex)
-{
-    Node* source = &graph[sourceIndex];
-    Node* sink = &graph[sinkIndex];
+        // Augment flow while there is a path
+        while (bfs(residual, source, sink, parent)) {
+            int pathFlow = INF;
 
-    // Create residual graph
-    ResidualGraph residual;
-    for (int i = 0; i < graph.GetSize(); i++)
-    {
-        Node* node = &graph[i];
-        for (int j = 0; j < node->connections.GetSize(); j++)
-        {
-            Connection* conn = &node->connections[j];
-            residual.addEdge(node, conn->ptr, conn->distance);
+            // Find minimum residual capacity along the path
+            for (int v = sink; v != source; v = parent[v]) {
+                int u = parent[v];
+                pathFlow = std::min(pathFlow, residual[u][v]);
+            }
+
+            // Update residual capacities
+            for (int v = sink; v != source; v = parent[v]) {
+                int u = parent[v];
+                residual[u][v] -= pathFlow;
+                residual[v][u] += pathFlow;
+            }
+
+            result.maxFlow += pathFlow;
         }
-    }
 
-    double maxFlow = 0;
-    BigDVector<Node*> path;
-
-    // While there exists an augmenting path
-    while (findPath(graph, residual, source, sink, path))
-    {
-        // Find minimum residual capacity along the path
-        double pathFlow = 999999.0;
-        for (int i = path.GetSize() - 1; i > 0; i--)
-        {
-            Node* current = path[i];
-            Node* next = path[i- 1];
-            double residualCap = residual.getResidualCapacity(current, next);
-
-            if (residualCap < pathFlow)
-            {
-                pathFlow = residualCap;
+        // Store final flow values
+        if constexpr (std::is_same_v<GraphType, AdjacencyList>) {
+            for (int u = 0; u < V; u++) {
+                for (const auto& edge : graph.getAdjacent(u)) {
+                    int v = edge.destination;
+                    int capacity = edge.weight;
+                    int flow = capacity - residual[u][v];
+                    if (flow > 0) {
+                        result.flowEdges.emplace_back(u, v, flow);
+                    }
+                }
+            }
+        } else {  // AdjacencyMatrix
+            for (int u = 0; u < V; u++) {
+                for (int v = 0; v < V; v++) {
+                    int capacity = graph.getWeight(u, v);
+                    if (capacity != graph.getNoEdgeValue()) {
+                        int flow = capacity - residual[u][v];
+                        if (flow > 0) {
+                            result.flowEdges.emplace_back(u, v, flow);
+                        }
+                    }
+                }
             }
         }
 
-        // Update residual capacities
-        for (int i = path.GetSize() - 1; i > 0; i--)
-        {
-            Node* current = path[i];
-            Node* next = path[i- 1];
-            residual.updateFlow(current, next, pathFlow);
-        }
+        return result;
+    }
 
-        maxFlow += pathFlow;
+static bool bfs(const DefinitelyNotAVector<DefinitelyNotAVector<int>>& residual,
+                   int source, int sink, DefinitelyNotAVector<int>& parent) {
+    int V = residual.size();
+    DefinitelyNotAVector<bool> visited(V, false);
 
-        // Clear path for next iteration
-        while (path.GetSize() > 0)
-        {
-            path.PopData();
+    DefinitelyNotAQueue<int> queue;
+    queue.push(source);
+    visited[source] = true;
+    parent[source] = -1;
+
+    while (!queue.empty()) {
+        int u = queue.front();
+        queue.pop();
+
+        for (int v = 0; v < V; v++) {
+            if (!visited[v] && residual[u][v] > 0) {
+                queue.push(v);
+                parent[v] = u;
+                visited[v] = true;
+            }
         }
     }
 
-    return maxFlow;
+    return visited[sink];
 }
+
 
 #endif //FORDFULKERSON_H

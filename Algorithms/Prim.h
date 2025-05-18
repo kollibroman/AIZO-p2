@@ -1,104 +1,73 @@
 #ifndef PRIM_H
 #define PRIM_H
 
-#include "../Infrastructure/Node.h"
-#include "../Utils/BigDVector.h"
+#include "../Utils/Node.h"
+#include "../Utils/DefinitelyNotADataStructures/DefinitelyNotAVector.h"
+#include "../Utils/Results/MSTResult.h"
+#include "../Utils/Representations/AdjacencyList.h"
+#include "../Utils/BinaryHeap.h"
 
-class PrimNode
-{
-public:
-    Node* node;
-    double key;
-    bool visited;
+constexpr int INF = std::numeric_limits<int>::max();
 
-    PrimNode() : node(nullptr), key(999999.0), visited(false) {}
+ template<typename GraphType>
+    static MSTResult prim(const GraphType& graph) {
+        int V = graph.getVertexCount();
+        MSTResult result;
 
-    explicit PrimNode(Node* n) : node(n), key(999999.0), visited(false) {}
-};
+        DefinitelyNotAVector<int> key(V, INF);
+        DefinitelyNotAVector<int> parent(V, -1);
+        DefinitelyNotAVector<bool> inMST(V, false);
 
-inline int findMinKeyNode(BigDVector<PrimNode>& nodes)
-{
-    double minKey = 999999.0;
-    int minIndex = -1;
+        BinaryHeap<int> minHeap(V);
+        minHeap.insert(0, 0, 0);
+        key[0] = 0;
 
-    for (int v = 0; v < nodes.GetSize(); v++)
-    {
-        PrimNode* current = &nodes[v];
-        if (!current->visited && current->key < minKey)
-        {
-            minKey = current->key;
-            minIndex = v;
-        }
-    }
+        while (!minHeap.empty()) {
+            auto min = minHeap.extractMin();
+            int u = min.vertex;
+            inMST[u] = true;
 
-    return minIndex;
-}
+            if (parent[u] != -1) {
+                result.edges.emplace_back(parent[u], u, key[u]);
+                result.totalWeight += key[u];
+            }
 
-inline BigDVector<Connection> findMSTPrim(BigDVector<Node>& graph, int startVertex)
-{
-    if (graph.GetSize() == 0)
-    {
-        return { };
-    }
+            if constexpr (std::is_same_v<GraphType, AdjacencyList>) {
+                for (const auto& edge : graph.getAdjacent(u)) {
+                    int v = edge.destination;
+                    int weight = edge.weight;
 
-    // Initialize result MST
-    BigDVector<Connection> mst;
+                    if (!inMST[v] && weight < key[v]) {
+                        parent[v] = u;
+                        key[v] = weight;
 
-    // Create auxiliary array for Prim's algorithm
-    BigDVector<PrimNode> primNodes;
+                        if (minHeap.contains(v)) {
+                            minHeap.decreaseKey(v, weight);
+                        } else {
+                            minHeap.insert(weight, v, v);
+                        }
+                    }
+                }
+            } else {  // AdjacencyMatrix
+                for (int v = 0; v < V; v++) {
+                    int weight = graph.getWeight(u, v);
+                    if (weight != graph.getNoEdgeValue() &&
+                        !inMST[v] && weight < key[v]) {
+                        parent[v] = u;
+                        key[v] = weight;
 
-    // Initialize all vertices
-    for (int i = 0; i < graph.GetSize(); i++)
-    {
-        primNodes.Push(PrimNode(graph[i]));
-    }
-
-    // Start with first vertex
-    primNodes.GetData(startVertex)->key = 0;
-
-    // Find MST with V vertices
-    for (int i = 0; i < graph.GetSize(); i++)
-    {
-        // Find minimum key vertex
-        int minIndex = findMinKeyNode(primNodes);
-        if (minIndex == -1) {
-            break;  // No more connected components
-        }
-
-        // Add chosen vertex to MST
-        PrimNode* minNode = primNodes.GetData(minIndex);
-        minNode->visited = true;
-
-        // Add edge to MST if not the first vertex
-        if (minNode->node->predecessor != nullptr)
-        {
-            mst.Push(Connection(minNode->node, minNode->key));
-        }
-
-        // Update key values of adjacent vertices
-        Node* currentNode = minNode->node;
-        for (int j = 0; j < currentNode->connections.GetSize(); j++)
-        {
-            Connection* conn = &currentNode->connections[j];
-
-            // Find the PrimNode for this connection
-            for (int k = 0; k < primNodes.GetSize(); k++)
-            {
-                PrimNode* adjacentPrim = &primNodes[k];
-
-                if (adjacentPrim->node == conn->ptr &&
-                    !adjacentPrim->visited &&
-                    conn->distance < adjacentPrim->key)
-                {
-
-                    adjacentPrim->key = conn->distance;
-                    adjacentPrim->node->predecessor = currentNode;
+                        if (minHeap.contains(v)) {
+                            minHeap.decreaseKey(v, weight);
+                        } else {
+                            minHeap.insert(weight, v, v);
+                        }
+                    }
                 }
             }
         }
-    }
 
-    return mst;
+        return result;
 }
+
 
 #endif //PRIM_H
