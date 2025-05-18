@@ -14,29 +14,56 @@ public:
     RandomGraphGenerator() : gen(rd()) {}
 
     GraphData generate(const int vertices, const int density, const bool isDirected, const int minWeight = 1, const int maxWeight = 100) {
-        if (density == 100) {
-            return generateComplete(vertices, isDirected, minWeight, maxWeight);
-        }
-        
-        GraphData graph;
-        graph.numVertices = vertices;
-        
-        if (isDirected) {
-            generateDirectedConnected(graph, minWeight, maxWeight);
-        } else {
-            generateUndirectedConnected(graph, minWeight, maxWeight);
+        // Validate inputs
+        if (vertices <= 0) {
+            throw std::invalid_argument("Number of vertices must be positive");
         }
 
-        // Calculate remaining edges to add based on density
-        const int maxEdges = isDirected ? vertices * (vertices - 1) : (vertices * (vertices - 1)) / 2;
-        const int targetEdges = (maxEdges * density) / 100;
-        const int remainingEdges = targetEdges - graph.edges.size();
+        if (density < 0 || density > 100) {
+            throw std::invalid_argument("Density must be between 0 and 100");
+        }
 
-        // Add random edges to reach desired density
-        addRandomEdges(graph, remainingEdges, isDirected, minWeight, maxWeight);
+        try {
+            if (density >= 99) { // Handle high density cases with the complete graph generator
+                return generateComplete(vertices, isDirected, minWeight, maxWeight);
+            }
 
-        return graph;
+            GraphData graph;
+            graph.numVertices = vertices;
+
+            if (isDirected) {
+                generateDirectedConnected(graph, minWeight, maxWeight);
+            } else {
+                generateUndirectedConnected(graph, minWeight, maxWeight);
+            }
+
+            // Calculate remaining edges to add based on density
+            int maxPossibleEdges;
+            if (isDirected) {
+                maxPossibleEdges = vertices * (vertices - 1);
+            } else {
+                maxPossibleEdges = (vertices * (vertices - 1)) / 2;
+            }
+
+            // Calculate how many edges we already have
+            int existingEdges = isDirected ? graph.edges.size() : graph.edges.size() / 2;
+
+            // Calculate how many more edges we need
+            int targetEdges = (maxPossibleEdges * density) / 100;
+            int remainingEdges = targetEdges - existingEdges;
+
+            // Make sure we don't try to add a negative number of edges
+            if (remainingEdges > 0) {
+                addRandomEdges(graph, remainingEdges, isDirected, minWeight, maxWeight);
+            }
+
+            return graph;
+        } catch (const std::exception& e) {
+            std::cerr << "Error in generate: " << e.what() << std::endl;
+            throw; // Re-throw to be handled by caller
+        }
     }
+
 
 private:
     void generateUndirectedConnected(GraphData& graph, int minWeight, int maxWeight) {
@@ -70,30 +97,36 @@ private:
     }
 
     GraphData generateComplete(int vertices, bool isDirected, int minWeight, int maxWeight) {
+        // Validate input
+        if (vertices <= 0) {
+            throw std::invalid_argument("Number of vertices must be positive");
+        }
+
         GraphData complete;
         complete.numVertices = vertices;
 
-        for (int i = 0; i < vertices; i++) {
-            for (int j = isDirected ? 0 : i + 1; j < vertices; j++) {
-                if (i != j) {
-                    int weight = std::uniform_int_distribution<>(minWeight, maxWeight)(gen);
-                    complete.edges.emplace_back(i, j, weight);
-                    if (!isDirected) {
-                        complete.edges.emplace_back(j, i, weight);
+        try {
+            // For undirected graphs, add edges only once (i,j) to prevent duplicates
+            for (int i = 0; i < vertices; i++) {
+                for (int j = 0; j < vertices; j++) {
+                    if (i != j) { // Skip self-loops
+                        int weight = std::uniform_int_distribution<>(minWeight, maxWeight)(gen);
+                        if (isDirected || i < j) { // For undirected graphs, only add edges where i < j
+                            complete.edges.emplace_back(i, j, weight);
+                        }
                     }
                 }
             }
-        }
 
-        // Remove 1% of edges for 99% density
-        if (isDirected) {
-            const int edgesToRemove = vertices * (vertices - 1) / 100;
-            std::ranges::shuffle(complete.edges, gen);
-            complete.edges.resize(complete.edges.size() - edgesToRemove);
-        }
+            return complete;
 
-        return complete;
+        }
+        catch (const std::exception& e) {
+            std::cerr << "Error in generateComplete: " << e.what() << std::endl;
+            throw; // Re-throw to be handled by caller
+        }
     }
+
 
     void addRandomEdges(GraphData& graph, int count, bool isDirected, int minWeight, int maxWeight) {
         std::uniform_int_distribution<> vertexDist(0, graph.numVertices - 1);
