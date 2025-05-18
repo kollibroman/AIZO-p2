@@ -1,14 +1,15 @@
 #ifndef FLOWRESULT_H
 #define FLOWRESULT_H
-#include "../DefinitelyNotADataStructures/DefinitelyNotATuple.h"
 #include "../DefinitelyNotADataStructures/DefinitelyNotAVector.h"
 
 struct FlowResult {
     int maxFlow;
-    DefinitelyNotAVector<DefinitelyNotATuple<int, int, int>> flowEdges; // (from, to, flow)
-
-    FlowResult() : maxFlow(0) {}
+    // Residual graph representation
+    DefinitelyNotAVector<DefinitelyNotAVector<int>> residualGraph;
+    // Store the actual flow values
+    DefinitelyNotAVector<DefinitelyNotAVector<int>> flowGraph;
 };
+
 
 
 #endif //FLOWRESULT_H

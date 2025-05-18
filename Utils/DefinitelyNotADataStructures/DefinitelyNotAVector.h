@@ -3,22 +3,12 @@
 
 #include <stdexcept>
 
-template<typename T>
+template<class T>
 class DefinitelyNotAVector {
 private:
     T* data;
     size_t size_;
     size_t capacity_;
-
-    void resize(const size_t new_capacity) {
-        T* new_data = new T[new_capacity];
-        for (size_t i = 0; i < size_; i++) {
-            new_data[i] = std::move(data[i]);
-        }
-        delete[] data;
-        data = new_data;
-        capacity_ = new_capacity;
-    }
 
 public:
     DefinitelyNotAVector() : data(nullptr), size_(0), capacity_(0) {}
@@ -126,6 +116,23 @@ public:
 
     [[nodiscard]] size_t size() const { return size_; }
     [[nodiscard]] bool empty() const { return size_ == 0; }
+
+    void resize(const size_t new_capacity) {
+        T* new_data = new T[new_capacity];
+        for (size_t i = 0; i < size_; i++) {
+            new_data[i] = std::move(data[i]);
+        }
+        delete[] data;
+        data = new_data;
+        capacity_ = new_capacity;
+    }
+
+    void pop_back() {
+        if (size_ > 0) {
+            --size_;
+        }
+    }
+
 
     // Iterator support
     T* begin() { return data; }

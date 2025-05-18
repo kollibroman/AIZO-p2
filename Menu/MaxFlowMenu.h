@@ -1,52 +1,110 @@
 #ifndef MAXFLOWMENU_H
 #define MAXFLOWMENU_H
 
-#include <iostream>
-#include "ftxui/component/component.hpp"
-#include "ftxui/component/screen_interactive.hpp"
+#include "Abstractions/MenuBase.h"
+#include "../Algorithms/FordFulkerson.h"
+#include "../Utils/Results/FlowResult.h"
 
-inline void MaxFlowMenu()
-{
-    std::cout << "Najwiekszy przeplyw" << std::endl;
+class MaxFlowMenu : public MenuBase {
+public:
+    MaxFlowMenu() : MenuBase() {}
 
-    auto screen = ftxui::ScreenInteractive::TerminalOutput();
-    std::cout << "Wybierz problem: " << std::endl;
-    std::vector<std::string> entries = {
-        "Wczytaj z pliku",
-        "Wygeneruj graf losowo",
-        "Wyswietl listowo i macierzowo",
-        "Ford fulkerson"
-    };
-    int selected = 0;
-    bool quit = false;
+    void show() {
+        std::vector<std::string> entries = {
+            "1. Load from file",
+            "2. Generate random graph",
+            "3. Display representations",
+            "4. Run Ford-Fulkerson algorithm",
+            "5. Back to main menu"
+        };
 
-
-    auto menu = ftxui::Menu(
-      {
-         .entries = &entries,
-         .selected = &selected,
-         .on_enter = [&screen, &quit]() {
-             quit = true;
-             screen.Exit();
-         },
-    });
-
-    screen.Loop(menu);
-
-    switch (selected)
-    {
-        case 0:
-
-            break;
-        case 1:
-
-            break;
-        case 2:
-
-            break;
-        default:
-            std::cout << "Wybierz poprawny problem" << std::endl;
+        runMenu("Maximum Flow Problem", entries, [this](int selected) {
+            switch (selected) {
+                case 0:
+                    loadFromFile(GraphProblemType::MAX_FLOW);
+                    break;
+                case 1: {
+                    int vertices, density;
+                    std::cout << "Enter number of vertices: ";
+                    std::cin >> vertices;
+                    std::cout << "Enter density (0-100): ";
+                    std::cin >> density;
+                    
+                    // Clear input buffer
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    
+                    generateRandom(vertices, density, true);
+                    break;
+                }
+                case 2:
+                    displayBothRepresentations();
+                    waitForEnter();
+                    break;
+                case 3:
+                    if (graphLoaded) {
+                        runFordFulkerson();
+                        waitForEnter();
+                    } else {
+                        std::cout << "No graph loaded!\n";
+                        waitForEnter();
+                    }
+                    break;
+                case 4:
+                    return;
+                default:
+                    break;
+            }
+        });
     }
-}
+
+private:
+    void runFordFulkerson() {
+        int source, sink;
+        std::cout << "Enter source vertex (0 to " << listGraph.getVertexCount() - 1 << "): ";
+        std::cin >> source;
+        std::cout << "Enter sink vertex (0 to " << listGraph.getVertexCount() - 1 << "): ";
+        std::cin >> sink;
+        
+        // Clear input buffer
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+        if (source < 0 || source >= listGraph.getVertexCount() ||
+            sink < 0 || sink >= listGraph.getVertexCount() ||
+            source == sink) {
+            std::cout << "Invalid vertices!\n";
+            return;
+        }
+
+        auto listResult = FordFulkersonList::findMaxFlow(listGraph, source, sink);
+        auto matrixResult = FordFulkersonMatrix::findMaxFlow(matrixGraph, source, sink);
+        displayFlowResults("Ford-Fulkerson", listResult, matrixResult);
+    }
+
+    void displayFlowResults(const std::string& algorithm,
+                          const FlowResult& listResult,
+                          const FlowResult& matrixResult) {
+        std::cout << "\n" << algorithm << " Algorithm Results:\n";
+
+        std::cout << "\nList Representation Results:\n";
+        displaySingleFlowResult(listResult);
+
+        std::cout << "\nMatrix Representation Results:\n";
+        displaySingleFlowResult(matrixResult);
+    }
+
+    void displaySingleFlowResult(const FlowResult& result) {
+        std::cout << "Maximum Flow: " << result.maxFlow << "\n\n";
+        std::cout << "Flow Graph:\n";
+        for (int i = 0; i < result.flowGraph.size(); i++) {
+            for (int j = 0; j < result.flowGraph[i].size(); j++) {
+                if (result.flowGraph[i][j] > 0) {
+                    std::cout << i << " -> " << j << ": "
+                             << result.flowGraph[i][j] << "\n";
+                }
+            }
+        }
+        std::cout << "\n";
+    }
+};
 
 #endif //MAXFLOWMENU_H

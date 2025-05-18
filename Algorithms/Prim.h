@@ -1,73 +1,103 @@
 #ifndef PRIM_H
 #define PRIM_H
 
-#include "../Utils/Node.h"
 #include "../Utils/DefinitelyNotADataStructures/DefinitelyNotAVector.h"
 #include "../Utils/Results/MSTResult.h"
-#include "../Utils/Representations/AdjacencyList.h"
 #include "../Utils/BinaryHeap.h"
 
-constexpr int INF = std::numeric_limits<int>::max();
-
- template<typename GraphType>
-    static MSTResult prim(const GraphType& graph) {
+class PrimList {
+public:
+    static MSTResult findMST(const AdjacencyList& graph) {
         int V = graph.getVertexCount();
         MSTResult result;
+        result.totalWeight = 0;
 
-        DefinitelyNotAVector<int> key(V, INF);
+        DefinitelyNotAVector<bool> included(V, false);
+        DefinitelyNotAVector<int> key(V, INT_MAX);
         DefinitelyNotAVector<int> parent(V, -1);
-        DefinitelyNotAVector<bool> inMST(V, false);
-
+        
         BinaryHeap<int> minHeap(V);
-        minHeap.insert(0, 0, 0);
         key[0] = 0;
+        minHeap.insert(0, 0, 0);
 
         while (!minHeap.empty()) {
-            auto min = minHeap.extractMin();
-            int u = min.vertex;
-            inMST[u] = true;
+            int u = minHeap.extractMin().vertex;
+            included[u] = true;
 
-            if (parent[u] != -1) {
-                result.edges.emplace_back(parent[u], u, key[u]);
-                result.totalWeight += key[u];
-            }
+            for (const auto& edge : graph.getAdjacent(u)) {
+                int v = edge.destination;
+                int weight = edge.weight;
 
-            if constexpr (std::is_same_v<GraphType, AdjacencyList>) {
-                for (const auto& edge : graph.getAdjacent(u)) {
-                    int v = edge.destination;
-                    int weight = edge.weight;
-
-                    if (!inMST[v] && weight < key[v]) {
-                        parent[v] = u;
-                        key[v] = weight;
-
-                        if (minHeap.contains(v)) {
-                            minHeap.decreaseKey(v, weight);
-                        } else {
-                            minHeap.insert(weight, v, v);
-                        }
-                    }
-                }
-            } else {  // AdjacencyMatrix
-                for (int v = 0; v < V; v++) {
-                    int weight = graph.getWeight(u, v);
-                    if (weight != graph.getNoEdgeValue() &&
-                        !inMST[v] && weight < key[v]) {
-                        parent[v] = u;
-                        key[v] = weight;
-
-                        if (minHeap.contains(v)) {
-                            minHeap.decreaseKey(v, weight);
-                        } else {
-                            minHeap.insert(weight, v, v);
-                        }
+                if (!included[v] && weight < key[v]) {
+                    key[v] = weight;
+                    parent[v] = u;
+                    
+                    if (minHeap.contains(v)) {
+                        minHeap.decreaseKey(v, weight);
+                    } else {
+                        minHeap.insert(weight, v, v);
                     }
                 }
             }
         }
 
+        // Construct result
+        for (int i = 1; i < V; i++) {
+            if (parent[i] != -1) {
+                result.edges.push_back(DefinitelyNotATuple(parent[i], i, key[i]));
+                result.totalWeight += key[i];
+            }
+        }
+
         return result;
-}
+    }
+};
 
+class PrimMatrix {
+public:
+    static MSTResult findMST(const AdjacencyMatrix& graph) {
+        int V = graph.getVertexCount();
+        MSTResult result;
+        result.totalWeight = 0;
 
+        DefinitelyNotAVector<bool> included(V, false);
+        DefinitelyNotAVector<int> key(V, INT_MAX);
+        DefinitelyNotAVector<int> parent(V, -1);
+        
+        BinaryHeap<int> minHeap(V);
+        key[0] = 0;
+        minHeap.insert(0, 0, 0);
+
+        while (!minHeap.empty()) {
+            int u = minHeap.extractMin().vertex;
+            included[u] = true;
+
+            for (int v = 0; v < V; v++) {
+                int weight = graph.getWeight(u, v);
+                
+                if (weight != graph.getNoEdgeValue() && 
+                    !included[v] && weight < key[v]) {
+                    key[v] = weight;
+                    parent[v] = u;
+                    
+                    if (minHeap.contains(v)) {
+                        minHeap.decreaseKey(v, weight);
+                    } else {
+                        minHeap.insert(weight, v, v);
+                    }
+                }
+            }
+        }
+
+        // Construct result
+        for (int i = 1; i < V; i++) {
+            if (parent[i] != -1) {
+                result.edges.push_back(DefinitelyNotATuple<int, int, int>(parent[i], i, key[i]));
+                result.totalWeight += key[i];
+            }
+        }
+
+        return result;
+    }
+};
 #endif //PRIM_H

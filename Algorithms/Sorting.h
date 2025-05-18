@@ -1,28 +1,31 @@
 #ifndef SORTING_H
 #define SORTING_H
-#include <algorithm>
+
 #include "../Utils/DefinitelyNotADataStructures/DefinitelyNotAVector.h"
 #include "../Utils/DefinitelyNotADataStructures/DefinitelyNotATuple.h"
 
 class Sorting
 {
 public:
-     static void QuickSort(DefinitelyNotAVector<DefinitelyNotATuple<int, int, int>>& edges,
+     static void QuickSort(DefinitelyNotAVector<Edge>& edges,
                          int low, int high) {
         if (low < high) {
-            int pi = std::ranges::partition(edges, low, high);
+            int pi = partition(edges, low, high);
             QuickSort(edges, low, pi - 1);
             QuickSort(edges, pi + 1, high);
         }
     }
 
-    static int partition(DefinitelyNotAVector<DefinitelyNotATuple<int, int, int>>& edges,
-                        int low, int high) {
-        auto pivot = edges[high].third();
+    static int partition(DefinitelyNotAVector<Edge>& edges,
+                        int low, int high)
+    {
+        auto pivot = edges[high].weight;
         int i = low - 1;
 
-        for (int j = low; j < high; j++) {
-            if (edges[j].third() <= pivot) {
+        for (int j = low; j < high; j++)
+        {
+            if (edges[j].weight <= pivot)
+            {
                 i++;
                 MySwap(edges[i], edges[j]);
             }
@@ -31,9 +34,10 @@ public:
         return i + 1;
     }
 
-    static void MySwap(DefinitelyNotATuple<int, int, int>& a,
-                    DefinitelyNotATuple<int, int, int>& b) {
-        DefinitelyNotATuple<int, int, int> temp = a;
+    static void MySwap(Edge& a,
+                    Edge& b)
+    {
+        const Edge temp = a;
         a = b;
         b = temp;
     }

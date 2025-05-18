@@ -1,19 +1,6 @@
 cmake_minimum_required(VERSION 3.31)
 
 set(CMAKE_CXX_STANDARD 23)
-include(FetchContent)
-set(FETCHCONTENT_UPDATES_DISCONNECTED TRUE)
-FetchContent_Declare(ftxui
-        GIT_REPOSITORY https://github.com/ArthurSonzogni/ftxui
-        GIT_TAG v6.1.9
-)
-
-FetchContent_MakeAvailable(ftxui)
-
-if(NOT ftxui_POPULATED)
-    FetchContent_Populate(ftxui)
-    add_subdirectory(${ftxui_SOURCE_DIR} ${ftxui_BINARY_DIR} EXCLUDE_FROM_ALL)
-endif()
 
 project(Projekt2 LANGUAGES CXX VERSION 1.0.0)
 add_executable(Projekt2 main.cpp
@@ -43,11 +30,6 @@ add_executable(Projekt2 main.cpp
         Utils/DefinitelyNotADataStructures/UnionFind.h
         Algorithms/Sorting.h
         Utils/DefinitelyNotADataStructures/DefinitelyNotAQueue.h
-        Utils/Representations/Edge.h)
-
-target_link_libraries(Projekt2
-        # Chose a submodule
-        PRIVATE ftxui::component
-        PRIVATE ftxui::dom
-        PRIVATE ftxui::screen
-)
+        Utils/Representations/Edge.h
+        Menu/Abstractions/MenuBase.h
+        Tests/TestRandomGraphGeneration.h)

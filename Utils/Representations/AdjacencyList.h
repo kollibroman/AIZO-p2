@@ -1,7 +1,8 @@
 #ifndef ADJACENCYLIST_H
 #define ADJACENCYLIST_H
+
 #include "../DefinitelyNotADataStructures/DefinitelyNotAVector.h"
-#include "../Edge.h"
+#include "Edge.h"
 
 class AdjacencyList {
 private:
@@ -21,7 +22,7 @@ public:
     void addEdge(int from, int to, int weight) {
         adjacencyList[from].push_back(Edge(from, to, weight));
         if (!isDirected) {
-            adjacencyList[to].push_back(Edge(from, weight));
+            adjacencyList[to].push_back(Edge(to, from, weight));
         }
     }
 
@@ -29,9 +30,22 @@ public:
         return adjacencyList[vertex];
     }
 
+    DefinitelyNotAVector<Edge> toEdgeList() const {
+        DefinitelyNotAVector<Edge> edges;
+        for (int i = 0; i < vertices; ++i) {
+            for (const auto& edge : adjacencyList[i]) {
+                if (isDirected || edge.source <= edge.destination) {
+                    edges.push_back(edge);
+                }
+            }
+        }
+        return edges;
+    }
+
     int getVertexCount() const { return vertices; }
     bool getIsDirected() const { return isDirected; }
 };
+
 
 
 #endif //ADJACENCYLIST_H

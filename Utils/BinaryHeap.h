@@ -11,6 +11,7 @@ private:
         int vertex;
         int key;
 
+        HeapNode() : value(T()), vertex(-1), key(-1) {}
         HeapNode(T v, int vtx, int k) : value(v), vertex(vtx), key(k) {}
 
         bool operator<(const HeapNode& other) const {
@@ -35,10 +36,10 @@ private:
         int left = 2 * idx + 1;
         int right = 2 * idx + 2;
 
-        if (left < heap.GetSize() && heap[left] < heap[smallest])
+        if (left < heap.size() && heap[left] < heap[smallest])
             smallest = left;
 
-        if (right < heap.GetSize() && heap[right] < heap[smallest])
+        if (right < heap.size() && heap[right] < heap[smallest])
             smallest = right;
 
         if (smallest != idx) {
@@ -63,24 +64,24 @@ public:
     explicit BinaryHeap(int capacity) : position(capacity, -1) {}
 
     void insert(T value, int vertex, int key) {
-        heap.Push(HeapNode(value, vertex, key));
-        position[vertex] = heap.GetSize() - 1;
-        bubbleUp(heap.GetSize() - 1);
+        heap.push_back(HeapNode(value, vertex, key));
+        position[vertex] = heap.size() - 1;
+        bubbleUp(heap.size() - 1);
     }
 
     HeapNode extractMin() {
-        if (heap.GetSize() <= 0) {
+        if (heap.size() <= 0) {
             return HeapNode(T(), -1, -1);
         }
 
         HeapNode min = heap[0];
         position[min.vertex] = -1;
 
-        heap[0] = heap[heap.GetSize() - 1];
+        heap[0] = heap[heap.size() - 1];
         position[heap[0].vertex] = 0;
-        heap.Pop();
+        heap.pop_back();
 
-        if (heap.GetSize() > 0) {
+        if (heap.size() > 0) {
             heapify(0);
         }
 
@@ -100,7 +101,7 @@ public:
     }
 
     bool empty() const {
-        return heap.GetSize() == 0;
+        return heap.size() == 0;
     }
 };
 
