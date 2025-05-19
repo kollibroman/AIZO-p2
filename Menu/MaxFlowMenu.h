@@ -14,8 +14,9 @@ public:
             "1. Load from file",
             "2. Generate random graph",
             "3. Display representations",
-            "4. Run Ford-Fulkerson algorithm",
-            "5. Back to main menu"
+            "4. Run Ford-Fulkerson algorithm with BFS",
+            "5. Run Ford-Fulkerson algorithm with DFS",
+            "6. Back to main menu"
         };
 
         runMenu("Maximum Flow Problem", entries, [this](int selected) {
@@ -42,7 +43,7 @@ public:
                     break;
                 case 3:
                     if (graphLoaded) {
-                        runFordFulkerson();
+                        runFordFulkerson(SearchMethod::BFS);
                         waitForEnter();
                     } else {
                         std::cout << "No graph loaded!\n";
@@ -50,6 +51,15 @@ public:
                     }
                     break;
                 case 4:
+                    if (graphLoaded) {
+                        runFordFulkerson(SearchMethod::DFS);
+                        waitForEnter();
+                    } else {
+                        std::cout << "No graph loaded!\n";
+                        waitForEnter();
+                    }
+                    break;
+                case 5:
                     return;
                 default:
                     break;
@@ -58,7 +68,7 @@ public:
     }
 
 private:
-    void runFordFulkerson() {
+    void runFordFulkerson(SearchMethod method) {
         int source, sink;
         std::cout << "Enter source vertex (0 to " << listGraph.getVertexCount() - 1 << "): ";
         std::cin >> source;
@@ -75,9 +85,12 @@ private:
             return;
         }
 
-        auto listResult = FordFulkersonList::findMaxFlow(listGraph, source, sink);
-        auto matrixResult = FordFulkersonMatrix::findMaxFlow(matrixGraph, source, sink);
-        displayFlowResults("Ford-Fulkerson", listResult, matrixResult);
+        std::string methodName = (method == SearchMethod::BFS) ? "BFS" : "DFS";
+        std::cout << "\nRunning Ford-Fulkerson with " << methodName << " search method\n";
+
+        auto listResult = FordFulkersonList::findMaxFlow(listGraph, source, sink, method);
+        auto matrixResult = FordFulkersonMatrix::findMaxFlow(matrixGraph, source, sink, method);
+        displayFlowResults("Ford-Fulkerson with " + methodName, listResult, matrixResult);
     }
 
     void displayFlowResults(const std::string& algorithm,

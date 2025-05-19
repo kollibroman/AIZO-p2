@@ -4,9 +4,14 @@
 #include "../Utils/DefinitelyNotADataStructures/DefinitelyNotAQueue.h"
 #include "../Utils/DefinitelyNotADataStructures/DefinitelyNotAVector.h"
 
+enum class SearchMethod {
+    BFS,
+    DFS
+};
+
 class FordFulkersonList {
 public:
-    static FlowResult findMaxFlow(const AdjacencyList& graph, int source, int sink) {
+    static FlowResult findMaxFlow(const AdjacencyList& graph, int source, int sink, SearchMethod method = SearchMethod::BFS) {
         int V = graph.getVertexCount();
         FlowResult result;
         result.maxFlow = 0;
@@ -27,7 +32,19 @@ public:
         }
 
         DefinitelyNotAVector<int> parent(V);
-        while (bfs(result.residualGraph, source, sink, parent, V)) {
+        bool pathFound = false;
+        
+        while (true) {
+            // Choose search method based on parameter
+            if (method == SearchMethod::BFS) {
+                pathFound = bfs(result.residualGraph, source, sink, parent, V);
+            } else {
+                DefinitelyNotAVector<bool> visited(V, false);
+                pathFound = dfs(result.residualGraph, source, sink, parent, visited, V);
+            }
+            
+            if (!pathFound) break;
+            
             int pathFlow = INT_MAX;
             for (int v = sink; v != source; v = parent[v]) {
                 int u = parent[v];
@@ -72,11 +89,32 @@ private:
 
         return visited[t];
     }
+    
+    static bool dfs(const DefinitelyNotAVector<DefinitelyNotAVector<int>>& rGraph,
+                    int u, int t, DefinitelyNotAVector<int>& parent, 
+                    DefinitelyNotAVector<bool>& visited, int V) {
+        if (u == t) {
+            return true;
+        }
+        
+        visited[u] = true;
+        
+        for (int v = 0; v < V; v++) {
+            if (!visited[v] && rGraph[u][v] > 0) {
+                parent[v] = u;
+                if (dfs(rGraph, v, t, parent, visited, V)) {
+                    return true;
+                }
+            }
+        }
+        
+        return false;
+    }
 };
 
 class FordFulkersonMatrix {
 public:
-    static FlowResult findMaxFlow(const AdjacencyMatrix& graph, int source, int sink) {
+    static FlowResult findMaxFlow(const AdjacencyMatrix& graph, int source, int sink, SearchMethod method = SearchMethod::BFS) {
         int V = graph.getVertexCount();
         FlowResult result;
         result.maxFlow = 0;
@@ -100,7 +138,19 @@ public:
         }
 
         DefinitelyNotAVector<int> parent(V);
-        while (bfs(result.residualGraph, source, sink, parent, V)) {
+        bool pathFound = false;
+        
+        while (true) {
+            // Choose search method based on parameter
+            if (method == SearchMethod::BFS) {
+                pathFound = bfs(result.residualGraph, source, sink, parent, V);
+            } else {
+                DefinitelyNotAVector<bool> visited(V, false);
+                pathFound = dfs(result.residualGraph, source, sink, parent, visited, V);
+            }
+            
+            if (!pathFound) break;
+            
             int pathFlow = INT_MAX;
             for (int v = sink; v != source; v = parent[v]) {
                 int u = parent[v];
@@ -144,6 +194,27 @@ private:
         }
 
         return visited[t];
+    }
+    
+    static bool dfs(const DefinitelyNotAVector<DefinitelyNotAVector<int>>& rGraph,
+                    int u, int t, DefinitelyNotAVector<int>& parent, 
+                    DefinitelyNotAVector<bool>& visited, int V) {
+        if (u == t) {
+            return true;
+        }
+        
+        visited[u] = true;
+        
+        for (int v = 0; v < V; v++) {
+            if (!visited[v] && rGraph[u][v] > 0) {
+                parent[v] = u;
+                if (dfs(rGraph, v, t, parent, visited, V)) {
+                    return true;
+                }
+            }
+        }
+        
+        return false;
     }
 };
 #endif //FORDFULKERSON_H
