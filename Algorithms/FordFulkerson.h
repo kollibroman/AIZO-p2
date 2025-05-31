@@ -3,11 +3,8 @@
 #include "../Utils/Results/FlowResult.h"
 #include "../Utils/DefinitelyNotADataStructures/DefinitelyNotAQueue.h"
 #include "../Utils/DefinitelyNotADataStructures/DefinitelyNotAVector.h"
+#include "../Utils/Enums/SearchMethod.h"
 
-enum class SearchMethod {
-    BFS,
-    DFS
-};
 
 class FordFulkersonList {
 public:

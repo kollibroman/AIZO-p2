@@ -22,7 +22,7 @@ add_executable(Projekt2 main.cpp
         Utils/Representations/AdjancencyMatrix.h
         Infrastructure/GraphConverter.h
         Utils/GraphData.h
-        Utils/GraphProblemType.h
+        Utils/Enums/GraphProblemType.h
         Utils/BinaryHeap.h
         Utils/Results/PathResult.h
         Utils/Results/MSTResult.h
@@ -32,4 +32,11 @@ add_executable(Projekt2 main.cpp
         Utils/DefinitelyNotADataStructures/DefinitelyNotAQueue.h
         Utils/Representations/Edge.h
         Menu/Abstractions/MenuBase.h
-        Tests/TestRandomGraphGeneration.h)
+        Tests/TestRandomGraphGeneration.h
+        Infrastructure/FileWriter.h
+        Utils/Data/GraphDataHandler.h
+        Utils/Enums/Algorithm.h
+        Utils/Enums/GraphRepresentationType.h
+        Tests/ReportGenerator.h
+        Utils/Enums/SearchMethod.h
+        Utils/Representations/GraphRepresentation.h)

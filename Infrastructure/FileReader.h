@@ -4,7 +4,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-#include "../Utils/GraphProblemType.h"
+#include "../Utils/Enums/GraphProblemType.h"
 #include "../Utils/GraphData.h"
 #include "../Utils/DefinitelyNotADataStructures/DefinitelyNotAVector.h"
 
@@ -12,7 +12,7 @@ class FileReader {
 public:
     static GraphData readGraphFromFile(const GraphProblemType& problemType) {
         std::string fileName;
-        std::cout << "Enter the file name: ";
+        std::cout << "Enter the file name (full file path): ";
         std::cin >> fileName;
 
         std::ifstream file(fileName);

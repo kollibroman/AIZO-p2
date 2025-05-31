@@ -4,11 +4,24 @@
 #include <iostream>
 #include <memory>
 
+#include "../Utils/Enums/GraphRepresentationType.h"
+
 class AdjacencyMatrix;
 class AdjacencyList;
 
 class GraphConverter {
 public:
+    static std::unique_ptr<GraphRepresentation> ConvertToRepresenstation(const GraphData& data, const bool isDirected, const GraphRepresentationType type)
+    {
+        switch (type)
+        {
+            case GraphRepresentationType::ADJACENCY_LIST:
+                return graphDataToAdjList(data, isDirected);
+            case GraphRepresentationType::ADJACENCY_MATRIX:
+                return graphDataToAdjMatrix(data, isDirected);
+        }
+    }
+
     static std::unique_ptr<AdjacencyList> graphDataToAdjList(const GraphData& data, bool isDirected) {
         auto adjList = std::make_unique<AdjacencyList>(data.numVertices, isDirected);
 

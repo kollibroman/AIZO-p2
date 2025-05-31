@@ -45,14 +45,11 @@ public:
                 maxPossibleEdges = (vertices * (vertices - 1)) / 2;
             }
 
-            // Calculate how many edges we already have
             int existingEdges = isDirected ? graph.edges.size() : graph.edges.size() / 2;
 
-            // Calculate how many more edges we need
             int targetEdges = (maxPossibleEdges * density) / 100;
             int remainingEdges = targetEdges - existingEdges;
 
-            // Make sure we don't try to add a negative number of edges
             if (remainingEdges > 0) {
                 addRandomEdges(graph, remainingEdges, isDirected, minWeight, maxWeight);
             }
@@ -96,12 +93,8 @@ private:
         }
     }
 
-    GraphData generateComplete(int vertices, bool isDirected, int minWeight, int maxWeight) {
-        // Validate input
-        if (vertices <= 0) {
-            throw std::invalid_argument("Number of vertices must be positive");
-        }
-
+    GraphData generateComplete(int vertices, bool isDirected, int minWeight, int maxWeight)
+    {
         GraphData complete;
         complete.numVertices = vertices;
 
@@ -119,7 +112,6 @@ private:
             }
 
             return complete;
-
         }
         catch (const std::exception& e) {
             std::cerr << "Error in generateComplete: " << e.what() << std::endl;

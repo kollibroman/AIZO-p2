@@ -6,7 +6,7 @@
 #include "Representations/AdjacencyList.h"
 #include "Representations/AdjancencyMatrix.h"
 #include "GraphData.h"
-#include "GraphProblemType.h"
+#include "Enums/GraphProblemType.h"
 #include "../Infrastructure/GraphConverter.h"
 
 class RepresentationStorer {

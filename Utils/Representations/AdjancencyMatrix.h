@@ -2,8 +2,9 @@
 #define ADJANCENCYMATRIX_H
 #include "../DefinitelyNotADataStructures/DefinitelyNotAVector.h"
 #include "Edge.h"
+#include "GraphRepresentation.h"
 
-class AdjacencyMatrix
+class AdjacencyMatrix : public GraphRepresentation
 {
 private:
     DefinitelyNotAVector<DefinitelyNotAVector<int>> matrix;
@@ -18,25 +19,26 @@ public:
         }
     }
 
-    void addEdge(int from, int to, int weight) {
+    void addEdge(int from, int to, int weight) override {
         matrix[from][to] = weight;
         matrix[to][from] = weight; // For undirected graph
     }
 
-    int getWeight(int from, int to) const {
+    [[nodiscard]] int getWeight(int from, int to) const {
         return matrix[from][to];
     }
 
-    int getVertexCount() const {
+    int getVertexCount() const override {
         return vertices;
     }
 
-    int getNoEdgeValue() const {
+    [[nodiscard]] static int getNoEdgeValue()
+    {
         return NO_EDGE;
     }
 
     // Convert to edge list (used by Kruskal's algorithm)
-    [[nodiscard]] DefinitelyNotAVector<Edge> toEdgeList() const {
+    [[nodiscard]] DefinitelyNotAVector<Edge> toEdgeList() const override {
         DefinitelyNotAVector<Edge> edges;
         for (int i = 0; i < vertices; i++) {
             for (int j = i + 1; j < vertices; j++) {

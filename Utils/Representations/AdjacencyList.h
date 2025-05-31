@@ -3,8 +3,10 @@
 
 #include "../DefinitelyNotADataStructures/DefinitelyNotAVector.h"
 #include "Edge.h"
+#include "GraphRepresentation.h"
 
-class AdjacencyList {
+class AdjacencyList : public GraphRepresentation
+{
 private:
     DefinitelyNotAVector<DefinitelyNotAVector<Edge>> adjacencyList;
     int vertices;
@@ -19,7 +21,7 @@ public:
         }
     }
 
-    void addEdge(int from, int to, int weight) {
+    void addEdge(int from, int to, int weight) override {
         adjacencyList[from].push_back(Edge(from, to, weight));
         if (!isDirected) {
             adjacencyList[to].push_back(Edge(to, from, weight));
@@ -30,7 +32,7 @@ public:
         return adjacencyList[vertex];
     }
 
-    DefinitelyNotAVector<Edge> toEdgeList() const {
+    DefinitelyNotAVector<Edge> toEdgeList() const override {
         DefinitelyNotAVector<Edge> edges;
         for (int i = 0; i < vertices; ++i) {
             for (const auto& edge : adjacencyList[i]) {
@@ -42,7 +44,7 @@ public:
         return edges;
     }
 
-    int getVertexCount() const { return vertices; }
+    int getVertexCount() const override { return vertices; }
     bool getIsDirected() const { return isDirected; }
 };
 
