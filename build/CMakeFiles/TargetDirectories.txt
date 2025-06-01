@@ -1,0 +1,3 @@
+/home/kollibroman/Studia/AIZO/Projekt2/build/CMakeFiles/Projekt2.dir
+/home/kollibroman/Studia/AIZO/Projekt2/build/CMakeFiles/edit_cache.dir
+/home/kollibroman/Studia/AIZO/Projekt2/build/CMakeFiles/rebuild_cache.dir

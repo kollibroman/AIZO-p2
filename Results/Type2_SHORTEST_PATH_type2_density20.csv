@@ -1,0 +1,5 @@
+AlgorithmRepresentation,ExecutionTime
+Dijkstra_AdjacencyMatrix,5
+Dijkstra_AdjacencyList,0
+Bellman-Ford_AdjacencyMatrix,3719
+Bellman-Ford_AdjacencyList,251

@@ -1,0 +1,5 @@
+AlgorithmRepresentation,ExecutionTime
+Kruskal_AdjacencyMatrix,136
+Kruskal_AdjacencyList,374
+Prim_AdjacencyMatrix,3
+Prim_AdjacencyList,1

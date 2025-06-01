@@ -1,0 +1,5 @@
+AlgorithmRepresentation,ExecutionTime
+Ford-Fulkerson-DFS_AdjacencyMatrix,13289
+Ford-Fulkerson-DFS_AdjacencyList,6364
+Ford-Fulkerson-BFS_AdjacencyMatrix,668
+Ford-Fulkerson-BFS_AdjacencyList,758

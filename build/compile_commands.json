@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/kollibroman/Studia/AIZO/Projekt2/build",
+  "command": "/usr/bin/g++ -g -std=gnu++23 -fmodules-ts -fmodule-mapper=CMakeFiles/Projekt2.dir/main.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/Projekt2.dir/main.cpp.o -c /home/kollibroman/Studia/AIZO/Projekt2/main.cpp",
+  "file": "/home/kollibroman/Studia/AIZO/Projekt2/main.cpp",
+  "output": "CMakeFiles/Projekt2.dir/main.cpp.o"
+}
+]
