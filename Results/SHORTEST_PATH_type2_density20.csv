@@ -1,0 +1,8 @@
+VertexCount,Dijkstra_AdjacencyMatrix,Dijkstra_AdjacencyList,Bellman-Ford_AdjacencyMatrix,Bellman-Ford_AdjacencyList
+100,0,0,3,0
+250,0,0,54,4
+300,0,0,99,5
+400,1,0,238,14
+500,1,0,460,28
+600,2,0,814,47
+800,3,0,1921,113

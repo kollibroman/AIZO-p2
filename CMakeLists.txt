@@ -39,4 +39,5 @@ add_executable(Projekt2 main.cpp
         Utils/Enums/GraphRepresentationType.h
         Tests/ReportGenerator.h
         Utils/Enums/SearchMethod.h
-        Utils/Representations/GraphRepresentation.h)
+        Utils/Representations/GraphRepresentation.h
+        Tests/TestRunner.h)

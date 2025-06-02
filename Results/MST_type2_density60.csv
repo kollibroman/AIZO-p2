@@ -1,0 +1,8 @@
+VertexCount,Kruskal_AdjacencyMatrix,Kruskal_AdjacencyList,Prim_AdjacencyMatrix,Prim_AdjacencyList
+100,0,0,0,0
+250,4,16,0,0
+300,8,30,0,0
+400,24,89,1,0
+500,49,192,1,0
+600,99,377,2,1
+800,315,1262,4,2

@@ -21,19 +21,20 @@ class Type2ChartGenerator:
         # Representation types
         self.representations = ['AdjacencyMatrix', 'AdjacencyList']
 
-    def find_type2_csv_files(self, pattern="Type2_*.csv"):
+    def find_type2_csv_files(self, pattern="*_type2_*.csv"):
         """Find all Type 2 CSV files matching the pattern"""
         return list(self.results_path.glob(pattern))
 
     def create_type2_charts(self, problem_type="MST"):
         """
-        Create Type 2 charts (separate column charts for each graph density)
+        Create Type 2 charts (separate line charts for each graph density)
+        Line charts with vertex count on X-axis and algorithm-representation combinations as lines
 
         Args:
             problem_type: Type of problem (MST, SHORTEST_PATH, MAX_FLOW)
         """
         # Find CSV files for the specific problem type
-        csv_files = self.find_type2_csv_files(f"Type2_{problem_type}_*.csv")
+        csv_files = self.find_type2_csv_files(f"*{problem_type}_type2_*.csv")
 
         if not csv_files:
             print(f"Nie znaleziono plików CSV typu 2 dla problemu: {problem_type}")
@@ -43,7 +44,7 @@ class Type2ChartGenerator:
             self._create_single_density_chart(csv_file, problem_type)
 
     def _create_single_density_chart(self, csv_file, problem_type):
-        """Create a column chart for a single graph density"""
+        """Create a line chart for a single graph density"""
         try:
             # Read CSV data
             df = pd.read_csv(csv_file)
@@ -54,32 +55,34 @@ class Type2ChartGenerator:
             # Create the chart
             fig, ax = plt.subplots(figsize=(12, 8))
 
-            # Parse algorithm-representation combinations
-            algorithm_rep_combinations = []
-            execution_times = []
+            # Get vertex count values (X-axis)
+            vertex_counts = df['VertexCount'].values
 
-            for _, row in df.iterrows():
-                combination = row['AlgorithmRepresentation']
-                time = row['ExecutionTime']
+            # Plot each algorithm-representation combination
+            algorithm_rep_columns = [col for col in df.columns if col != 'VertexCount']
 
-                if pd.notna(time) and time != '':
-                    algorithm_rep_combinations.append(combination)
-                    execution_times.append(float(time))
+            for algo_rep_col in algorithm_rep_columns:
+                # Get execution times for this algorithm-representation combination
+                times = df[algo_rep_col].values
 
-            if not algorithm_rep_combinations:
-                print(f"Nie znaleziono prawidłowych danych w {csv_file}")
-                return
+                # Convert from microseconds to milliseconds for better readability
+                times_ms = times / 1000.0
 
-            # Debug: print combinations found
-            print(f"Znaleziono kombinacje w {csv_file}: {algorithm_rep_combinations}")
+                # Remove NaN values and corresponding vertex counts
+                valid_mask = ~pd.isna(times_ms) & (times_ms != '') & (times_ms > 0)
+                valid_vertex_counts = vertex_counts[valid_mask]
+                valid_times_ms = times_ms[valid_mask]
 
-            # Group data by algorithm and representation
-            grouped_data = self._group_algorithm_representation_data(
-                algorithm_rep_combinations, execution_times
-            )
-
-            # Create column chart
-            self._create_column_chart_for_density(ax, grouped_data, problem_type)
+                if len(valid_times_ms) > 0:
+                    # Format the legend label
+                    legend_label = self._format_algorithm_representation_name(algo_rep_col)
+                    
+                    ax.plot(valid_vertex_counts, valid_times_ms,
+                            marker='o',
+                            label=legend_label,
+                            linestyle='-',
+                            markersize=6,
+                            linewidth=2)
 
             # Customize the chart
             self._customize_type2_chart(ax, density, problem_type)
@@ -88,62 +91,13 @@ class Type2ChartGenerator:
             output_filename = f"Typ2_{problem_type}_gestosc{density}_wykres.png"
             output_path = self.output_dir / output_filename
 
-            plt.savefig(output_path)
+            plt.savefig(output_path, dpi=300, bbox_inches='tight')
             plt.close()
 
             print(f"Wykres typu 2 zapisany: {output_path}")
 
         except Exception as e:
             print(f"Błąd podczas tworzenia wykresu typu 2 dla {csv_file}: {e}")
-
-    def _create_column_chart_for_density(self, ax, grouped_data, problem_type):
-        """Create column chart for algorithm comparison across representations"""
-        algorithms = self._get_algorithms_for_problem_type(problem_type)
-        
-        # Debug: print algorithms and grouped data
-        print(f"Algorytmy dla {problem_type}: {algorithms}")
-        print(f"Zgrupowane dane: {grouped_data}")
-        
-        # Prepare data for column chart
-        rep_names = [self._format_representation_name(rep) for rep in self.representations]
-        x_pos = np.arange(len(rep_names))
-        
-        # Width of bars
-        bar_width = 0.35
-        
-        # Create bars for each algorithm
-        for i, algorithm in enumerate(algorithms):
-            values = []
-            
-            for representation in self.representations:
-                # For MAX_FLOW, use the actual format from CSV data
-                if problem_type.upper() == "MAX_FLOW":
-                    key = f"{algorithm}_{representation}"
-                else:
-                    # For other problem types, use standard format
-                    key = f"{algorithm}_{representation}"
-                
-                found_value = 0
-                if key in grouped_data:
-                    found_value = grouped_data[key]
-                
-                values.append(found_value)
-            
-            # Only plot if we have some data for this algorithm
-            if any(v > 0 for v in values):
-                label = self._format_algorithm_name(algorithm)
-                ax.bar(x_pos + i * bar_width, values, bar_width, label=label)
-
-        # Set x-axis labels and positions
-        ax.set_xticks(x_pos + bar_width / 2)
-        ax.set_xticklabels(rep_names)
-
-    def _group_algorithm_representation_data(self, combinations, times):
-        """Group data by algorithm-representation combinations"""
-        grouped = {}
-        for combination, time in zip(combinations, times):
-            grouped[combination] = time
-        return grouped
 
     def _extract_density_from_filename(self, filename):
         """Extract density value from filename"""
@@ -153,6 +107,44 @@ class Type2ChartGenerator:
             return match.group(1)
         return "Nieznana"
 
+    def _format_algorithm_representation_name(self, algo_rep_col):
+        """Format algorithm-representation combination name for display"""
+        # Extract algorithm name and representation from column name like "Kruskal_AdjacencyMatrix"
+        if "_" in algo_rep_col:
+            parts = algo_rep_col.split("_")
+            if len(parts) >= 2:
+                algorithm = parts[0]
+                representation = parts[1]
+                
+                # Handle special cases with multiple underscores
+                if len(parts) > 2:
+                    # For cases like "Ford-Fulkerson-DFS_AdjacencyMatrix"
+                    algorithm = "_".join(parts[:-1])
+                    representation = parts[-1]
+                
+                # Format algorithm name
+                algorithm_map = {
+                    "Kruskal": "Kruskal",
+                    "Prim": "Prim",
+                    "Dijkstra": "Dijkstra",
+                    "Bellman-Ford": "Bellman-Ford",
+                    "Ford-Fulkerson-DFS": "Ford-Fulkerson (DFS)",
+                    "Ford-Fulkerson-BFS": "Ford-Fulkerson (BFS)"
+                }
+                
+                # Format representation name
+                representation_map = {
+                    "AdjacencyMatrix": "Macierz",
+                    "AdjacencyList": "Lista"
+                }
+                
+                formatted_algorithm = algorithm_map.get(algorithm, algorithm)
+                formatted_representation = representation_map.get(representation, representation)
+                
+                return f"{formatted_algorithm} ({formatted_representation})"
+        
+        return algo_rep_col
+
     def _get_algorithms_for_problem_type(self, problem_type):
         """Get relevant algorithms for the problem type"""
         if problem_type.upper() == "MST":
@@ -160,33 +152,8 @@ class Type2ChartGenerator:
         elif problem_type.upper() in ["SSP", "SHORTEST_PATH"]:
             return ["Dijkstra", "Bellman-Ford"]
         elif problem_type.upper() == "MAX_FLOW":
-            # Use the actual algorithm names from CSV data
             return ["Ford-Fulkerson-DFS", "Ford-Fulkerson-BFS"]
         return []
-
-    def _format_algorithm_name(self, algorithm):
-        """Format algorithm name for display in Polish"""
-        algorithm_map = {
-            "Kruskal": "Kruskal",
-            "Prim": "Prim",
-            "Dijkstra": "Dijkstra",
-            "Bellman-Ford": "Bellman-Ford",
-            "FordFulkersonDFS": "Ford-Fulkerson (DFS)",
-            "FordFulkersonBFS": "Ford-Fulkerson (BFS)",
-            "FordFulkersonList": "Ford-Fulkerson (Lista)",
-            "FordFulkersonMatrix": "Ford-Fulkerson (Macierz)",
-            "Ford-Fulkerson-DFS": "Ford-Fulkerson (DFS)",
-            "Ford-Fulkerson-BFS": "Ford-Fulkerson (BFS)"
-        }
-        return algorithm_map.get(algorithm, algorithm)
-
-    def _format_representation_name(self, representation):
-        """Format representation name for display in Polish"""
-        if representation == "AdjacencyMatrix":
-            return "Macierz sąsiedztwa"
-        elif representation == "AdjacencyList":
-            return "Lista sąsiedztwa"
-        return representation
 
     def _format_problem_type(self, problem_type):
         """Format problem type for display in Polish"""
@@ -198,30 +165,104 @@ class Type2ChartGenerator:
         return problem_map.get(problem_type, problem_type)
 
     def _customize_type2_chart(self, ax, density, problem_type):
-        """Customize Type 2 column chart appearance with Polish labels"""
+        """Customize Type 2 line chart appearance with Polish labels"""
         # Set labels and title
-        ax.set_xlabel('Reprezentacja grafu', fontsize=12)
+        ax.set_xlabel('Liczba wierzchołków', fontsize=12)
         ax.set_ylabel('Średni czas (ms)', fontsize=12)
 
         title = f'Wydajność algorytmów {self._format_problem_type(problem_type)} - gęstość {density}%'
         ax.set_title(title, fontsize=16)
 
         # Add legend
-        ax.legend(title="algorytmy")
+        ax.legend(title="Algorytmy i reprezentacje", bbox_to_anchor=(1.05, 1), loc='upper left')
 
         # Grid
-        ax.grid(True)
+        ax.grid(True, alpha=0.3)
+        
+        # Always use linear scale
+        ax.set_yscale('linear')
+
+    def create_comparison_chart(self, problem_type="MST"):
+        """
+        Create a comparison chart showing all densities on the same plot
+        """
+        csv_files = self.find_type2_csv_files(f"*{problem_type}_type2_*.csv")
+
+        if len(csv_files) < 2:
+            print(f"Potrzeba przynajmniej 2 plików CSV do wykresu porównawczego typu 2")
+            return
+
+        fig, ax = plt.subplots(figsize=(14, 10))
+
+        colors = ['blue', 'red', 'green', 'orange', 'purple', 'brown', 'pink', 'gray']
+        line_styles = ['-', '--', '-.', ':']
+        color_idx = 0
+
+        for csv_file in csv_files:
+            try:
+                df = pd.read_csv(csv_file)
+                density = self._extract_density_from_filename(csv_file.stem)
+
+                vertex_counts = df['VertexCount'].values
+                algorithm_rep_columns = [col for col in df.columns if col != 'VertexCount']
+
+                for i, algo_rep_col in enumerate(algorithm_rep_columns):
+                    times = df[algo_rep_col].values
+                    times_ms = times / 1000.0  # Convert to milliseconds
+                    
+                    valid_mask = ~pd.isna(times_ms) & (times_ms != '') & (times_ms > 0)
+                    valid_vertex_counts = vertex_counts[valid_mask]
+                    valid_times_ms = times_ms[valid_mask]
+
+                    if len(valid_times_ms) > 0:
+                        legend_label = f"{self._format_algorithm_representation_name(algo_rep_col)} (gęstość {density}%)"
+                        
+                        ax.plot(valid_vertex_counts, valid_times_ms,
+                                marker='o',
+                                label=legend_label,
+                                linestyle=line_styles[i % len(line_styles)],
+                                color=colors[color_idx % len(colors)],
+                                markersize=6,
+                                linewidth=2)
+                        
+                        color_idx += 1
+
+            except Exception as e:
+                print(f"Błąd podczas przetwarzania {csv_file} do porównania typu 2: {e}")
+
+        # Customize comparison chart
+        ax.set_xlabel('Liczba wierzchołków', fontsize=12)
+        ax.set_ylabel('Średni czas (ms)', fontsize=12)
+        ax.set_title(f'Porównanie algorytmów {self._format_problem_type(problem_type)} - wszystkie gęstości', fontsize=16)
+
+        ax.legend(title="Algorytmy, reprezentacje i gęstość", bbox_to_anchor=(1.05, 1), loc='upper left')
+        ax.grid(True, alpha=0.3)
+        
+        # Always use linear scale
+        ax.set_yscale('linear')
+
+        # Save comparison chart
+        output_filename = f"Typ2_{problem_type}_porownanie_wykres.png"
+        output_path = self.output_dir / output_filename
+
+        plt.savefig(output_path, dpi=300, bbox_inches='tight')
+        plt.close()
+
+        print(f"Wykres porównawczy typu 2 zapisany: {output_path}")
 
     def create_all_type2_charts(self):
         """Create all Type 2 charts for all problem types"""
         problem_types = ["MST", "SHORTEST_PATH", "MAX_FLOW"]
 
-        print("Generowanie wykresów kolumnowych typu 2 (osobne dla każdej gęstości)...")
+        print("Generowanie wykresów liniowych typu 2 (osobne dla każdej gęstości)...")
         for problem_type in problem_types:
             print(f"\nPrzetwarzanie wykresów typu 2 dla {problem_type}...")
             self.create_type2_charts(problem_type)
 
-        print("\nWszystkie wykresy kolumnowe typu 2 zostały wygenerowane pomyślnie!")
+            print(f"Tworzenie wykresu porównawczego typu 2 dla {problem_type}...")
+            self.create_comparison_chart(problem_type)
+
+        print("\nWszystkie wykresy liniowe typu 2 zostały wygenerowane pomyślnie!")
 
 def main():
     """Main function to generate Type 2 charts"""

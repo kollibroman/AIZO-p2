@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.3.23)  1 JUN 2025 21:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.3.23)  2 JUN 2025 16:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -786,12 +786,12 @@ Package hyperref Info: Link coloring OFF on input line 22.
 
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
-<jpg/DOJEBANE_LOGO_PWR.png, id=155, 182.1204pt x 264.99pt>
+<jpg/DOJEBANE_LOGO_PWR.png, id=143, 182.1204pt x 264.99pt>
 File: jpg/DOJEBANE_LOGO_PWR.png Graphic file (type png)
 <use jpg/DOJEBANE_LOGO_PWR.png>
 Package pdftex.def Info: jpg/DOJEBANE_LOGO_PWR.png  used on input line 26.
 (pdftex.def)             Requested size: 72.84686pt x 105.99411pt.
-<jpg/w4n.png, id=156, 225.84375pt x 225.84375pt>
+<jpg/w4n.png, id=144, 225.84375pt x 225.84375pt>
 File: jpg/w4n.png Graphic file (type png)
 <use jpg/w4n.png>
 Package pdftex.def Info: jpg/w4n.png  used on input line 34.
@@ -816,167 +816,164 @@ Package pdftex.def Info: jpg/w4n.png  used on input line 34.
 
 [6]
 PGFPlots: reading {../Results/Type1_MST_type1_AdjacencyList.csv}
-PGFPlots: reading {../Results/Type1_MST_type1_AdjacencyMatrix.csv}
 
 
 [7]
-<../Python/charts_type1/Typ1_MST_Lista_sąsiedztwa_wykres.png, id=267, 867.24pt x 578.16pt>
+PGFPlots: reading {../Results/Type1_MST_type1_AdjacencyMatrix.csv}
+<../Python/charts_type1/Typ1_MST_Lista_sąsiedztwa_wykres.png, id=251, 867.24pt x 578.16pt>
 File: ../Python/charts_type1/Typ1_MST_Lista_sąsiedztwa_wykres.png Graphic file (type png)
 <use ../Python/charts_type1/Typ1_MST_Lista_sąsiedztwa_wykres.png>
-Package pdftex.def Info: ../Python/charts_type1/Typ1_MST_Lista_sąsiedztwa_wykres.png  used on input line 354.
+Package pdftex.def Info: ../Python/charts_type1/Typ1_MST_Lista_sąsiedztwa_wykres.png  used on input line 364.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
-<../Python/charts_type1/Typ1_MST_Macierz_sąsiedztwa_wykres.png, id=269, 867.24pt x 578.16pt>
+<../Python/charts_type1/Typ1_MST_Macierz_sąsiedztwa_wykres.png, id=253, 867.24pt x 578.16pt>
 File: ../Python/charts_type1/Typ1_MST_Macierz_sąsiedztwa_wykres.png Graphic file (type png)
 <use ../Python/charts_type1/Typ1_MST_Macierz_sąsiedztwa_wykres.png>
-Package pdftex.def Info: ../Python/charts_type1/Typ1_MST_Macierz_sąsiedztwa_wykres.png  used on input line 359.
+Package pdftex.def Info: ../Python/charts_type1/Typ1_MST_Macierz_sąsiedztwa_wykres.png  used on input line 369.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
 
 
 [8 <../Python/charts_type1/Typ1_MST_Lista_sąsiedztwa_wykres.png>]
-<../Python/charts_type2/Typ2_MST_gestosc20_wykres.png, id=277, 867.24pt x 578.16pt>
+<../Python/charts_type2/Typ2_MST_gestosc20_wykres.png, id=262, 867.24pt x 578.16pt>
 File: ../Python/charts_type2/Typ2_MST_gestosc20_wykres.png Graphic file (type png)
 <use ../Python/charts_type2/Typ2_MST_gestosc20_wykres.png>
-Package pdftex.def Info: ../Python/charts_type2/Typ2_MST_gestosc20_wykres.png  used on input line 367.
+Package pdftex.def Info: ../Python/charts_type2/Typ2_MST_gestosc20_wykres.png  used on input line 377.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
-<../Python/charts_type2/Typ2_MST_gestosc50_wykres.png, id=278, 867.24pt x 578.16pt>
+<../Python/charts_type2/Typ2_MST_gestosc50_wykres.png, id=263, 867.24pt x 578.16pt>
 File: ../Python/charts_type2/Typ2_MST_gestosc50_wykres.png Graphic file (type png)
 <use ../Python/charts_type2/Typ2_MST_gestosc50_wykres.png>
-Package pdftex.def Info: ../Python/charts_type2/Typ2_MST_gestosc50_wykres.png  used on input line 372.
+Package pdftex.def Info: ../Python/charts_type2/Typ2_MST_gestosc50_wykres.png  used on input line 382.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
 
 
 [9 <../Python/charts_type1/Typ1_MST_Macierz_sąsiedztwa_wykres.png> <../Python/charts_type2/Typ2_MST_gestosc20_wykres.png>]
-<../Python/charts_type2/Typ2_MST_gestosc100_wykres.png, id=288, 867.24pt x 578.16pt>
+<../Python/charts_type2/Typ2_MST_gestosc100_wykres.png, id=272, 867.24pt x 578.16pt>
 File: ../Python/charts_type2/Typ2_MST_gestosc100_wykres.png Graphic file (type png)
 <use ../Python/charts_type2/Typ2_MST_gestosc100_wykres.png>
-Package pdftex.def Info: ../Python/charts_type2/Typ2_MST_gestosc100_wykres.png  used on input line 378.
+Package pdftex.def Info: ../Python/charts_type2/Typ2_MST_gestosc100_wykres.png  used on input line 388.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
 PGFPlots: reading {../Results/Type1_SHORTEST_PATH_type1_AdjacencyList.csv}
 
 
 [10 <../Python/charts_type2/Typ2_MST_gestosc50_wykres.png> <../Python/charts_type2/Typ2_MST_gestosc100_wykres.png>]
 PGFPlots: reading {../Results/Type1_SHORTEST_PATH_type1_AdjacencyMatrix.csv}
-<../Python/charts_type1/Typ1_SHORTEST_PATH_Lista_sąsiedztwa_wykres.png, id=297, 867.24pt x 578.16pt>
+<../Python/charts_type1/Typ1_SHORTEST_PATH_Lista_sąsiedztwa_wykres.png, id=281, 867.24pt x 578.16pt>
 File: ../Python/charts_type1/Typ1_SHORTEST_PATH_Lista_sąsiedztwa_wykres.png Graphic file (type png)
 <use ../Python/charts_type1/Typ1_SHORTEST_PATH_Lista_sąsiedztwa_wykres.png>
 Package pdftex.def Info: ../Python/charts_type1/Typ1_SHORTEST_PATH_Lista_sąsiedztwa_wykres.png  used on input line 427.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
-<../Python/charts_type1/Typ1_SHORTEST_PATH_Macierz_sąsiedztwa_wykres.png, id=298, 867.24pt x 578.16pt>
+<../Python/charts_type1/Typ1_SHORTEST_PATH_Macierz_sąsiedztwa_wykres.png, id=282, 867.24pt x 578.16pt>
 File: ../Python/charts_type1/Typ1_SHORTEST_PATH_Macierz_sąsiedztwa_wykres.png Graphic file (type png)
 <use ../Python/charts_type1/Typ1_SHORTEST_PATH_Macierz_sąsiedztwa_wykres.png>
 Package pdftex.def Info: ../Python/charts_type1/Typ1_SHORTEST_PATH_Macierz_sąsiedztwa_wykres.png  used on input line 432.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
 
 
-[11]
-<../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc20_wykres.png, id=305, 867.24pt x 578.16pt>
+[11 <../Python/charts_type1/Typ1_SHORTEST_PATH_Lista_sąsiedztwa_wykres.png>]
+<../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc20_wykres.png, id=292, 867.24pt x 578.16pt>
 File: ../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc20_wykres.png Graphic file (type png)
 <use ../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc20_wykres.png>
 Package pdftex.def Info: ../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc20_wykres.png  used on input line 440.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
-<../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc40_wykres.png, id=306, 867.24pt x 578.16pt>
+<../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc40_wykres.png, id=293, 867.24pt x 578.16pt>
 File: ../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc40_wykres.png Graphic file (type png)
 <use ../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc40_wykres.png>
 Package pdftex.def Info: ../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc40_wykres.png  used on input line 445.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
 
 
-[12 <../Python/charts_type1/Typ1_SHORTEST_PATH_Lista_sąsiedztwa_wykres.png> <../Python/charts_type1/Typ1_SHORTEST_PATH_Macierz_sąsiedztwa_wykres.png>]
-<../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc60_wykres.png, id=315, 867.24pt x 578.16pt>
+[12 <../Python/charts_type1/Typ1_SHORTEST_PATH_Macierz_sąsiedztwa_wykres.png> <../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc20_wykres.png>]
+<../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc60_wykres.png, id=302, 867.24pt x 578.16pt>
 File: ../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc60_wykres.png Graphic file (type png)
 <use ../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc60_wykres.png>
 Package pdftex.def Info: ../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc60_wykres.png  used on input line 451.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
-
-
-[13 <../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc20_wykres.png> <../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc40_wykres.png>]
-<../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc80_wykres.png, id=325, 867.24pt x 578.16pt>
+<../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc80_wykres.png, id=303, 867.24pt x 578.16pt>
 File: ../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc80_wykres.png Graphic file (type png)
 <use ../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc80_wykres.png>
 Package pdftex.def Info: ../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc80_wykres.png  used on input line 457.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
-<../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc100_wykres.png, id=326, 867.24pt x 578.16pt>
+
+
+[13 <../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc40_wykres.png> <../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc60_wykres.png>]
+<../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc100_wykres.png, id=313, 867.24pt x 578.16pt>
 File: ../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc100_wykres.png Graphic file (type png)
 <use ../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc100_wykres.png>
 Package pdftex.def Info: ../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc100_wykres.png  used on input line 463.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
-
-
-[14 <../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc60_wykres.png> <../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc80_wykres.png>]
 PGFPlots: reading {../Results/Type1_MAX_FLOW_type1_AdjacencyList.csv}
+
+
+[14 <../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc80_wykres.png> <../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc100_wykres.png>]
 PGFPlots: reading {../Results/Type1_MAX_FLOW_type1_AdjacencyMatrix.csv}
-
-
-[15 <../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc100_wykres.png>]
-<../Python/charts_type1/Typ1_MAX_FLOW_Lista_sąsiedztwa_wykres.png, id=342, 867.24pt x 578.16pt>
+<../Python/charts_type1/Typ1_MAX_FLOW_Lista_sąsiedztwa_wykres.png, id=322, 867.24pt x 578.16pt>
 File: ../Python/charts_type1/Typ1_MAX_FLOW_Lista_sąsiedztwa_wykres.png Graphic file (type png)
 <use ../Python/charts_type1/Typ1_MAX_FLOW_Lista_sąsiedztwa_wykres.png>
-Package pdftex.def Info: ../Python/charts_type1/Typ1_MAX_FLOW_Lista_sąsiedztwa_wykres.png  used on input line 508.
+Package pdftex.def Info: ../Python/charts_type1/Typ1_MAX_FLOW_Lista_sąsiedztwa_wykres.png  used on input line 502.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
-<../Python/charts_type1/Typ1_MAX_FLOW_Macierz_sąsiedztwa_wykres.png, id=343, 867.24pt x 578.16pt>
+<../Python/charts_type1/Typ1_MAX_FLOW_Macierz_sąsiedztwa_wykres.png, id=323, 867.24pt x 578.16pt>
 File: ../Python/charts_type1/Typ1_MAX_FLOW_Macierz_sąsiedztwa_wykres.png Graphic file (type png)
 <use ../Python/charts_type1/Typ1_MAX_FLOW_Macierz_sąsiedztwa_wykres.png>
-Package pdftex.def Info: ../Python/charts_type1/Typ1_MAX_FLOW_Macierz_sąsiedztwa_wykres.png  used on input line 513.
+Package pdftex.def Info: ../Python/charts_type1/Typ1_MAX_FLOW_Macierz_sąsiedztwa_wykres.png  used on input line 507.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
 
 
-[16 <../Python/charts_type1/Typ1_MAX_FLOW_Lista_sąsiedztwa_wykres.png>]
-<../Python/charts_type2/Typ2_MAX_FLOW_gestosc20_wykres.png, id=351, 867.24pt x 578.16pt>
+[15 <../Python/charts_type1/Typ1_MAX_FLOW_Lista_sąsiedztwa_wykres.png>]
+<../Python/charts_type2/Typ2_MAX_FLOW_gestosc20_wykres.png, id=332, 867.24pt x 578.16pt>
 File: ../Python/charts_type2/Typ2_MAX_FLOW_gestosc20_wykres.png Graphic file (type png)
 <use ../Python/charts_type2/Typ2_MAX_FLOW_gestosc20_wykres.png>
-Package pdftex.def Info: ../Python/charts_type2/Typ2_MAX_FLOW_gestosc20_wykres.png  used on input line 521.
+Package pdftex.def Info: ../Python/charts_type2/Typ2_MAX_FLOW_gestosc20_wykres.png  used on input line 515.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
-<../Python/charts_type2/Typ2_MAX_FLOW_gestosc40_wykres.png, id=352, 867.24pt x 578.16pt>
+<../Python/charts_type2/Typ2_MAX_FLOW_gestosc40_wykres.png, id=333, 867.24pt x 578.16pt>
 File: ../Python/charts_type2/Typ2_MAX_FLOW_gestosc40_wykres.png Graphic file (type png)
 <use ../Python/charts_type2/Typ2_MAX_FLOW_gestosc40_wykres.png>
-Package pdftex.def Info: ../Python/charts_type2/Typ2_MAX_FLOW_gestosc40_wykres.png  used on input line 526.
+Package pdftex.def Info: ../Python/charts_type2/Typ2_MAX_FLOW_gestosc40_wykres.png  used on input line 520.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
 
 
-[17 <../Python/charts_type1/Typ1_MAX_FLOW_Macierz_sąsiedztwa_wykres.png> <../Python/charts_type2/Typ2_MAX_FLOW_gestosc20_wykres.png>]
-<../Python/charts_type2/Typ2_MAX_FLOW_gestosc60_wykres.png, id=361, 867.24pt x 578.16pt>
+[16 <../Python/charts_type1/Typ1_MAX_FLOW_Macierz_sąsiedztwa_wykres.png> <../Python/charts_type2/Typ2_MAX_FLOW_gestosc20_wykres.png>]
+<../Python/charts_type2/Typ2_MAX_FLOW_gestosc60_wykres.png, id=342, 867.24pt x 578.16pt>
 File: ../Python/charts_type2/Typ2_MAX_FLOW_gestosc60_wykres.png Graphic file (type png)
 <use ../Python/charts_type2/Typ2_MAX_FLOW_gestosc60_wykres.png>
-Package pdftex.def Info: ../Python/charts_type2/Typ2_MAX_FLOW_gestosc60_wykres.png  used on input line 532.
+Package pdftex.def Info: ../Python/charts_type2/Typ2_MAX_FLOW_gestosc60_wykres.png  used on input line 526.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
-<../Python/charts_type2/Typ2_MAX_FLOW_gestosc80_wykres.png, id=362, 867.24pt x 578.16pt>
+<../Python/charts_type2/Typ2_MAX_FLOW_gestosc80_wykres.png, id=343, 867.24pt x 578.16pt>
 File: ../Python/charts_type2/Typ2_MAX_FLOW_gestosc80_wykres.png Graphic file (type png)
 <use ../Python/charts_type2/Typ2_MAX_FLOW_gestosc80_wykres.png>
-Package pdftex.def Info: ../Python/charts_type2/Typ2_MAX_FLOW_gestosc80_wykres.png  used on input line 538.
+Package pdftex.def Info: ../Python/charts_type2/Typ2_MAX_FLOW_gestosc80_wykres.png  used on input line 532.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
 
 
-[18 <../Python/charts_type2/Typ2_MAX_FLOW_gestosc40_wykres.png> <../Python/charts_type2/Typ2_MAX_FLOW_gestosc60_wykres.png>]
-<../Python/charts_type2/Typ2_MAX_FLOW_gestosc100_wykres.png, id=371, 867.24pt x 578.16pt>
+[17 <../Python/charts_type2/Typ2_MAX_FLOW_gestosc40_wykres.png> <../Python/charts_type2/Typ2_MAX_FLOW_gestosc60_wykres.png>]
+<../Python/charts_type2/Typ2_MAX_FLOW_gestosc100_wykres.png, id=352, 867.24pt x 578.16pt>
 File: ../Python/charts_type2/Typ2_MAX_FLOW_gestosc100_wykres.png Graphic file (type png)
 <use ../Python/charts_type2/Typ2_MAX_FLOW_gestosc100_wykres.png>
-Package pdftex.def Info: ../Python/charts_type2/Typ2_MAX_FLOW_gestosc100_wykres.png  used on input line 544.
+Package pdftex.def Info: ../Python/charts_type2/Typ2_MAX_FLOW_gestosc100_wykres.png  used on input line 538.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
 
 
-[19 <../Python/charts_type2/Typ2_MAX_FLOW_gestosc80_wykres.png> <../Python/charts_type2/Typ2_MAX_FLOW_gestosc100_wykres.png>]
+[18 <../Python/charts_type2/Typ2_MAX_FLOW_gestosc80_wykres.png> <../Python/charts_type2/Typ2_MAX_FLOW_gestosc100_wykres.png>]
 
-[20] (./Kwiek-p2.aux)
+[19] (./Kwiek-p2.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `Kwiek-p2.out' has not changed.
-(rerunfilecheck)             Checksum: E307BF48005605473742421407465304;6438.
+(rerunfilecheck)             Checksum: 5B9848D0933425D049AAF4F67036C158;6129.
  ) 
 Here is how much of TeX's memory you used:
- 35692 strings out of 475136
- 827661 string characters out of 5766291
+ 35687 strings out of 475136
+ 827556 string characters out of 5766291
  1366409 words of memory out of 5000000
- 58025 multiletter control sequences out of 15000+600000
- 564561 words of font info for 46 fonts, out of 8000000 for 9000
+ 58023 multiletter control sequences out of 15000+600000
+ 565247 words of font info for 47 fonts, out of 8000000 for 9000
  34 hyphenation exceptions out of 8191
  99i,10n,105p,774b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on Kwiek-p2.pdf (20 pages, 967097 bytes).
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
+Output written on Kwiek-p2.pdf (19 pages, 989444 bytes).
 PDF statistics:
- 463 PDF objects out of 1000 (max. 8388607)
- 377 compressed objects within 4 object streams
- 114 named destinations out of 1000 (max. 500000)
- 414 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 449 PDF objects out of 1000 (max. 8388607)
+ 362 compressed objects within 4 object streams
+ 110 named destinations out of 1000 (max. 500000)
+ 390 words of extra memory for PDF output out of 10000 (max. 10000000)
 

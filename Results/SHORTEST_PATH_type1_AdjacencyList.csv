@@ -1,0 +1,8 @@
+VertexCount,Dijkstra_density20,Dijkstra_density60,Dijkstra_density99,Bellman-Ford_density20,Bellman-Ford_density60,Bellman-Ford_density99
+100,0,0,0,0,0,1
+250,0,0,0,4,9,14
+300,0,0,0,5,15,25
+400,0,0,0,14,68,83
+500,0,0,0,28,82,121
+600,0,0,0,47,170,325
+800,0,0,1,113,412,707

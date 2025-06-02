@@ -1,0 +1,8 @@
+VertexCount,Ford-Fulkerson-DFS_AdjacencyMatrix,Ford-Fulkerson-DFS_AdjacencyList,Ford-Fulkerson-BFS_AdjacencyMatrix,Ford-Fulkerson-BFS_AdjacencyList
+100,14,7,1,1
+250,211,103,12,7
+300,292,143,21,13
+400,638,448,48,32
+500,1039,667,70,54
+600,2074,1039,137,98
+800,4680,1931,288,230

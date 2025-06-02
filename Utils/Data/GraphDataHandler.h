@@ -6,19 +6,20 @@
 
 struct GraphDataHandler
 {
-    GraphDataHandler() : algorithm(), MeasuredTime(0), representation(), Density(0)
+    GraphDataHandler() : algorithm(), MeasuredTime(0), representation(), Density(0), VertexCount(0)
     {
     }
 
-    GraphDataHandler(const Algorithm algorithm, const long measuredTime, const int density, const GraphRepresentationType representation) : algorithm(algorithm),
-        MeasuredTime(measuredTime), representation(representation), Density(density)
+    GraphDataHandler(const Algorithm algorithm, const double measuredTime, const int density, const GraphRepresentationType representation, const int vertexCount)
+        : algorithm(algorithm), MeasuredTime(measuredTime), representation(representation), Density(density), VertexCount(vertexCount)
     {
     }
 
     Algorithm algorithm;
-    long MeasuredTime;
+    double MeasuredTime;
     GraphRepresentationType representation;
     int Density;
+    int VertexCount;
 };
 
 #endif //TYPE1GRAPHDATAHANDLER_H

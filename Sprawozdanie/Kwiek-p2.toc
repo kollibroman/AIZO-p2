@@ -5,34 +5,31 @@
 \contentsline {section}{\numberline {4}Użyty sprzęt}{4}{section.4}%
 \contentsline {section}{\numberline {5}Problem MST}{4}{section.5}%
 \contentsline {subsection}{\numberline {5.1}Algorytmn Kruskala}{4}{subsection.5.1}%
-\contentsline {subsubsection}{\numberline {5.1.1}Lista kroków}{4}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Lista kroków}{5}{subsubsection.5.1.1}%
 \contentsline {subsection}{\numberline {5.2}Algorytm Prima}{5}{subsection.5.2}%
 \contentsline {subsubsection}{\numberline {5.2.1}Lista kroków}{5}{subsubsection.5.2.1}%
 \contentsline {section}{\numberline {6}Problem najkrótszej ścieżki}{5}{section.6}%
 \contentsline {subsection}{\numberline {6.1}Algorytm Dijkstry}{5}{subsection.6.1}%
-\contentsline {subsubsection}{\numberline {6.1.1}Lista kroków}{5}{subsubsection.6.1.1}%
+\contentsline {subsubsection}{\numberline {6.1.1}Lista kroków}{6}{subsubsection.6.1.1}%
 \contentsline {subsection}{\numberline {6.2}Algorytm Bellmana-Forda}{6}{subsection.6.2}%
 \contentsline {subsubsection}{\numberline {6.2.1}Lista kroków}{6}{subsubsection.6.2.1}%
 \contentsline {section}{\numberline {7}Problem maksymalnego przepływu}{6}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Algorytm Forda-Fulkersona (przeszukiwanie grafu w głąb)}{6}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.1}Algorytm Forda-Fulkersona (przeszukiwanie grafu w głąb)}{7}{subsection.7.1}%
 \contentsline {subsubsection}{\numberline {7.1.1}Lista kroków}{7}{subsubsection.7.1.1}%
 \contentsline {subsection}{\numberline {7.2}Algorytm Edmondsa-Karpa (przeszukiwanie grafu wszerz)}{7}{subsection.7.2}%
 \contentsline {subsubsection}{\numberline {7.2.1}Lista kroków}{7}{subsubsection.7.2.1}%
 \contentsline {section}{\numberline {8}Przebieg eksperymentu}{7}{section.8}%
-\contentsline {subsection}{\numberline {8.1}Problem MST}{7}{subsection.8.1}%
-\contentsline {subsubsection}{\numberline {8.1.1}Tabele}{7}{subsubsection.8.1.1}%
+\contentsline {subsection}{\numberline {8.1}Problem MST}{8}{subsection.8.1}%
+\contentsline {subsubsection}{\numberline {8.1.1}Tabele}{8}{subsubsection.8.1.1}%
 \contentsline {subsubsection}{\numberline {8.1.2}Wykresy Typu 1 dla Kruskala i Prima}{8}{subsubsection.8.1.2}%
 \contentsline {subsubsection}{\numberline {8.1.3}Wykresy Typu 2 dla Kruskala i Prima}{9}{subsubsection.8.1.3}%
-\contentsline {subsubsection}{\numberline {8.1.4}Wnioski}{10}{subsubsection.8.1.4}%
 \contentsline {subsection}{\numberline {8.2}Problem najkrótszej ścieżki}{11}{subsection.8.2}%
 \contentsline {subsubsection}{\numberline {8.2.1}Tabele}{11}{subsubsection.8.2.1}%
-\contentsline {subsubsection}{\numberline {8.2.2}Wnioski}{11}{subsubsection.8.2.2}%
-\contentsline {subsubsection}{\numberline {8.2.3}Wykresy Typu 1 dla Dijkstry i Bellmana-Forda}{12}{subsubsection.8.2.3}%
-\contentsline {subsubsection}{\numberline {8.2.4}Wykresy Typu 2 dla Dijkstry i Bellmana-Forda}{13}{subsubsection.8.2.4}%
-\contentsline {subsubsection}{\numberline {8.2.5}Wnioski}{15}{subsubsection.8.2.5}%
+\contentsline {subsubsection}{\numberline {8.2.2}Wykresy Typu 1 dla Dijkstry i Bellmana-Forda}{11}{subsubsection.8.2.2}%
+\contentsline {subsubsection}{\numberline {8.2.3}Wykresy Typu 2 dla Dijkstry i Bellmana-Forda}{12}{subsubsection.8.2.3}%
 \contentsline {subsection}{\numberline {8.3}Problem maksymalnego przepływu}{15}{subsection.8.3}%
 \contentsline {subsubsection}{\numberline {8.3.1}Tabele}{15}{subsubsection.8.3.1}%
-\contentsline {subsubsection}{\numberline {8.3.2}Wykresy Typu 1 dla Forda-Fulkersona i Edmondsa-Karpa}{16}{subsubsection.8.3.2}%
-\contentsline {subsubsection}{\numberline {8.3.3}Wykresy Typu 2 dla Forda-Fulkersona i Edmondsa-Karpa}{17}{subsubsection.8.3.3}%
-\contentsline {section}{\numberline {9}Podsumowanie}{20}{section.9}%
-\contentsline {section}{\numberline {10}Literatura}{20}{section.10}%
+\contentsline {subsubsection}{\numberline {8.3.2}Wykresy Typu 1 dla Forda-Fulkersona i Edmondsa-Karpa}{15}{subsubsection.8.3.2}%
+\contentsline {subsubsection}{\numberline {8.3.3}Wykresy Typu 2 dla Forda-Fulkersona i Edmondsa-Karpa}{16}{subsubsection.8.3.3}%
+\contentsline {section}{\numberline {9}Podsumowanie}{19}{section.9}%
+\contentsline {section}{\numberline {10}Literatura}{19}{section.10}%

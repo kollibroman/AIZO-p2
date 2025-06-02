@@ -104,10 +104,20 @@ W ramach przygotowań, cały plan oparty został na założeniu, iż grafy są g
 Eksperyment będzie polegał na zmierzeniu czasu wykonywania algorytmu na 5 reprezentatywnych gęstościach grafów:
 \begin{itemize}
     \item 20\%
-    \item 40\%
     \item 60\%
-    \item 80\%
-    \item 100\%
+    \item 99\%
+\end{itemize}
+
+7 reprezentatywnych rozmiarach grafów:
+
+\begin{itemize}
+    \item 100 węzłów
+    \item 250 węzłów
+    \item 300 węzłów
+    \item 400 węzłów
+    \item 500 węzłów
+    \item 600 węzłów
+    \item 800 węzłów
 \end{itemize}
 
 Oraz na 2 reprezentacjach grafów:
@@ -379,10 +389,6 @@ przedstawiono na wykresach, gdzie oś X to rozmiar tablicy, a oś Y to czas wyko
     \caption{Czasy wykonania algorytmów Kruskala i Prima dla gęstości 100\%}
 \end{figure}
 
-\subsubsection{Wnioski}
-Analizując table oraz wykresy możemy zobaczyć drastyczną różnicę w czasie wykonania algorytmu Kruskala i Prima.
-Algory
-
 \subsection{Problem najkrótszej ścieżki}
 
 \subsubsection{Tabele}
@@ -399,12 +405,6 @@ Algory
 ]{\datatable}
 \caption{Tabela średnich wyników w milisekundach dla algorytmu Dijkstry i Bellmana-Forda dla Listy sąsiedztwa}
 \end{table}
-
-\subsubsection{Wnioski}
-W przypadku sortowania przez kopcowanie, czas wykonania algorytmu rośnie w sposób zbliżony do liniowego i jest również zależny od typu danych.
-Bardzo podobnie do sortowania szybkiego, czas wykonania przypadku tablicy juz posortowanej jest najkrótszy, a czas wykonania algorytmu dla tablicy posortowanej malejąco jest średnio najdłuższy, ale zbliżony do czasu sortownaia tablicy losowej.
-W przypadku sortowania przez kopcowanie, czas wykonania algorytmu dla $float$ jest krótszy niż dla $int$. Na Obu
-wykresach możemy również zauważyć, że czas wykonania algorytmu dla tablicy posortowanej w 33\% jest krótszy niż dla tablicy posortowanej w 66\%
 
 \pgfplotstableread[col sep=comma]{../Results/Type1_SHORTEST_PATH_type1_AdjacencyMatrix.csv}\datatable
 
@@ -463,12 +463,6 @@ wykresach możemy również zauważyć, że czas wykonania algorytmu dla tablicy
     \includegraphics[scale=0.5]{../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc100_wykres.png}
     \caption{Czasy wykonania algorytmów Dijkstry i Bellmana-Forda dla gęstości 100\%}
 \end{figure}
-
-\subsubsection{Wnioski}
-W przypadku sortowania przez kopcowanie, czas wykonania algorytmu rośnie w sposób zbliżony do liniowego i jest również zależny od typu danych.
-Bardzo podobnie do sortowania szybkiego, czas wykonania przypadku tablicy juz posortowanej jest najkrótszy, a czas wykonania algorytmu dla tablicy posortowanej malejąco jest średnio najdłuższy, ale zbliżony do czasu sortownaia tablicy losowej.
-W przypadku sortowania przez kopcowanie, czas wykonania algorytmu dla $float$ jest krótszy niż dla $int$. Na Obu
-wykresach możemy również zauważyć, że czas wykonania algorytmu dla tablicy posortowanej w 33\% jest krótszy niż dla tablicy posortowanej w 66\%.
 
 \subsection{Problem maksymalnego przepływu}
 
@@ -567,6 +561,7 @@ Wyniki jasno pokazują, które algorytmy sprawdzą się najlepiej w każdym wymi
     \item Opracowanie algorytmów MST \url{https://eduinf.waw.pl/inf/alg/001_search/0141.php}
     \item Opracowanie algorytmów SSP \\ \url{https://eduinf.waw.pl/inf/alg/001_search/0138.php} \\ \url{https://eduinf.waw.pl/inf/alg/001_search/0138a.php}
     \item Opracowanie algorytmów Maksymalnego przepływu: \\ \url{https://eduinf.waw.pl/inf/alg/001_search/0125.php} \\ \url{https://eduinf.waw.pl/inf/alg/001_search/0126.php}
+    \item Złożoność pamięciowa reprezentacji grafów: \textit{T. H. Cormen - Wprowadzenie do algorytmów, str. 591-593}
 \end{itemize}
 
 \end{document}

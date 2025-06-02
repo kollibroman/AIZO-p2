@@ -1,0 +1,8 @@
+VertexCount,Ford-Fulkerson-DFS_density20,Ford-Fulkerson-DFS_density60,Ford-Fulkerson-DFS_density99,Ford-Fulkerson-BFS_density20,Ford-Fulkerson-BFS_density60,Ford-Fulkerson-BFS_density99
+100,7,20,30,1,1,2
+250,103,269,471,7,19,30
+300,143,496,777,13,34,53
+400,448,1011,1704,32,85,127
+500,667,2158,3425,54,151,223
+600,1039,2940,5061,98,270,393
+800,1931,7574,12217,230,602,904
