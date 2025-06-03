@@ -1,0 +1,7 @@
+# ninja log v6
+1	278	1748933913411989312	CMakeFiles/Projekt2.dir/main.cpp.o.ddi	7f029dd53f2007a5
+278	290	1748933913701488287	CMakeFiles/Projekt2.dir/main.cpp.o.modmap	68c48aa3db5aac6f
+278	290	1748933913701488287	CMakeFiles/Projekt2.dir/CXX.dd	68c48aa3db5aac6f
+278	290	1748933913701488287	/home/kollibroman/Studia/AIZO/Projekt2/build/CMakeFiles/Projekt2.dir/CXXModules.json	68c48aa3db5aac6f
+5577	5802	1748933918988900920	Projekt2	7089223376a18aba
+291	5573	1748933913702028237	CMakeFiles/Projekt2.dir/main.cpp.o	792d5cf07b97e8fb

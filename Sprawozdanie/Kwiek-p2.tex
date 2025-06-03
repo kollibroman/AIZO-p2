@@ -326,14 +326,18 @@ przedstawiono na wykresach, gdzie oś X to rozmiar tablicy, a oś Y to czas wyko
 \subsection{Problem MST}
 
 \subsubsection{Tabele}
-\pgfplotstableread[col sep=comma]{../Results/Type1_MST_type1_AdjacencyList.csv}\datatable
+\pgfplotstableread[col sep=comma]{../Results/MST_type1_AdjacencyList.csv}\datatable
 
 \begin{table}[H]
 \centering
 \pgfplotstabletypeset[
-    columns/column1/.style={column name=Density},
-    columns/column2/.style={column name=Kruskal (ms)},
-    columns/column3/.style={column name=Prim (ms)},
+    columns/column1/.style={column name=Vertext_Count},
+    columns/column2/.style={column name=Kruskal20 (ms)},
+    columns/column3/.style={column name=Kruskal60 (ms)},
+    columns/column4/.style={column name=Kruskal99 (ms)},
+    columns/column5/.style={column name=Prim20 (ms)},
+    columns/column6/.style={column name=Prim60 (ms)},
+    columns/column7/.style={column name=Prim99 (ms)},
     every head row/.style={before row=\toprule,after row=\midrule},
     every last row/.style={after row=\bottomrule}
 ]{\datatable}
@@ -342,7 +346,7 @@ przedstawiono na wykresach, gdzie oś X to rozmiar tablicy, a oś Y to czas wyko
 
     
 
-\pgfplotstableread[col sep=comma]{../Results/Type1_MST_type1_AdjacencyMatrix.csv}\datatable
+\pgfplotstableread[col sep=comma]{../Results/MST_type1_AdjacencyMatrix.csv}\datatable
 
 \begin{table}[H]
 \centering
@@ -361,12 +365,12 @@ przedstawiono na wykresach, gdzie oś X to rozmiar tablicy, a oś Y to czas wyko
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{../Python/charts_type1/Typ1_MST_Lista_sąsiedztwa_wykres.png}
+    \includegraphics[scale=0.4]{../Python/charts_type1/Typ1_MST_AdjacencyList_wykres.png}
     \caption{Czasy wykonania algorytmów Kruskala i Prima dla Listy sąsiedztwa}
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{../Python/charts_type1/Typ1_MST_Macierz_sąsiedztwa_wykres.png}
+    \includegraphics[scale=0.4]{../Python/charts_type1/Typ1_MST_AdjacencyMatrix_wykres.png}
     \caption{Czasy wykonania algorytmów Kruskala i Prima dla Macierzy sąsiedztwa}
 \end{figure}
 
@@ -374,25 +378,25 @@ przedstawiono na wykresach, gdzie oś X to rozmiar tablicy, a oś Y to czas wyko
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{../Python/charts_type2/Typ2_MST_gestosc20_wykres.png}
+    \includegraphics[scale=0.4]{../Python/charts_type2/Typ2_MST_gestosc20_wykres.png}
     \caption{Czasy wykonania algorytmów Kruskala i Prima dla gęstości 20\%}
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{../Python/charts_type2/Typ2_MST_gestosc50_wykres.png}
-    \caption{Czasy wykonania algorytmów Kruskala i Prima dla gęstości 50\%}
+    \includegraphics[scale=0.4]{../Python/charts_type2/Typ2_MST_gestosc60_wykres.png}
+    \caption{Czasy wykonania algorytmów Kruskala i Prima dla gęstości 60\%}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{../Python/charts_type2/Typ2_MST_gestosc100_wykres.png}
-    \caption{Czasy wykonania algorytmów Kruskala i Prima dla gęstości 100\%}
+    \includegraphics[scale=0.4]{../Python/charts_type2/Typ2_MST_gestosc99_wykres.png}
+    \caption{Czasy wykonania algorytmów Kruskala i Prima dla gęstości 99\%}
 \end{figure}
 
 \subsection{Problem najkrótszej ścieżki}
 
 \subsubsection{Tabele}
-\pgfplotstableread[col sep=comma]{../Results/Type1_SHORTEST_PATH_type1_AdjacencyList.csv}\datatable
+\pgfplotstableread[col sep=comma]{../Results/SHORTEST_PATH_type1_AdjacencyList.csv}\datatable
 
 \begin{table}[H]
 \centering
@@ -406,7 +410,7 @@ przedstawiono na wykresach, gdzie oś X to rozmiar tablicy, a oś Y to czas wyko
 \caption{Tabela średnich wyników w milisekundach dla algorytmu Dijkstry i Bellmana-Forda dla Listy sąsiedztwa}
 \end{table}
 
-\pgfplotstableread[col sep=comma]{../Results/Type1_SHORTEST_PATH_type1_AdjacencyMatrix.csv}\datatable
+\pgfplotstableread[col sep=comma]{../Results/SHORTEST_PATH_type1_AdjacencyMatrix.csv}\datatable
 
 \begin{table}[H]
 \centering
@@ -424,12 +428,12 @@ przedstawiono na wykresach, gdzie oś X to rozmiar tablicy, a oś Y to czas wyko
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{../Python/charts_type1/Typ1_SHORTEST_PATH_Lista_sąsiedztwa_wykres.png}
+    \includegraphics[scale=0.4]{../Python/charts_type1/Typ1_SHORTEST_PATH_AdjacencyList_wykres.png}
     \caption{Czasy wykonania algorytmów Dijkstry i Bellmana-Forda dla Listy sąsiedztwa}
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{../Python/charts_type1/Typ1_SHORTEST_PATH_Macierz_sąsiedztwa_wykres.png}
+    \includegraphics[scale=0.4]{../Python/charts_type1/Typ1_SHORTEST_PATH_AdjacencyMatrix_wykres.png}
     \caption{Czasy wykonania algorytmów Dijkstry i Bellmana-Forda dla Macierzy sąsiedztwa}
 \end{figure}
 
@@ -437,74 +441,71 @@ przedstawiono na wykresach, gdzie oś X to rozmiar tablicy, a oś Y to czas wyko
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc20_wykres.png}
+    \includegraphics[scale=0.4]{../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc20_wykres.png}
     \caption{Czasy wykonania algorytmów Dijkstry i Bellmana-Forda dla gęstości 20\%}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc40_wykres.png}
-    \caption{Czasy wykonania algorytmów Dijkstry i Bellmana-Forda dla gęstości 40\%}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc60_wykres.png}
+    \includegraphics[scale=0.4]{../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc60_wykres.png}
     \caption{Czasy wykonania algorytmów Dijkstry i Bellmana-Forda dla gęstości 60\%}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc80_wykres.png}
-    \caption{Czasy wykonania algorytmów Dijkstry i Bellmana-Forda dla gęstości 80\%}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc100_wykres.png}
-    \caption{Czasy wykonania algorytmów Dijkstry i Bellmana-Forda dla gęstości 100\%}
+    \includegraphics[scale=0.4]{../Python/charts_type2/Typ2_SHORTEST_PATH_gestosc99_wykres.png}
+    \caption{Czasy wykonania algorytmów Dijkstry i Bellmana-Forda dla gęstości 99\%}
 \end{figure}
 
 \subsection{Problem maksymalnego przepływu}
 
 \subsubsection{Tabele}
-\pgfplotstableread[col sep=comma]{../Results/Type1_MAX_FLOW_type1_AdjacencyList.csv}\datatable
+\pgfplotstableread[col sep=comma]{../Results/MAX_FLOW_type1_AdjacencyList.csv}\datatable
 
 \begin{table}[H]
 \centering
 \pgfplotstabletypeset[
-    columns/column1/.style={column name=Density},
-    columns/column2/.style={column name=Kruskal (ms)},
-    columns/column3/.style={column name=Prim (ms)},
+    columns/column1/.style={column name=VertextCount},
+    columns/column2/.style={column name=Kruskal20 (ms)},
+    columns/column3/.style={column name=Kruskal60 (ms)},
+    columns/column4/.style={column name=Kruskal99 (ms)},
+    columns/column5/.style={column name=Prim20 (ms)},
+    columns/column6/.style={column name=Prim60 (ms)},
+    columns/column7/.style={column name=Prim99 (ms)},
     every head row/.style={before row=\toprule,after row=\midrule},
     every last row/.style={after row=\bottomrule}
 ]{\datatable}
 \caption{Tabela średnich wyników w milisekundach dla algorytmu Forda-Fulkersona i Edmondsa-Karpa dla Listy sąsiedztwa}
 \end{table}
 
-\pgfplotstableread[col sep=comma]{../Results/Type1_MAX_FLOW_type1_AdjacencyMatrix.csv}\datatable
+\pgfplotstableread[col sep=comma]{../Results/MAX_FLOW_type1_AdjacencyMatrix.csv}\datatable
 
 \begin{table}[H]
 \centering
 \pgfplotstabletypeset[
-    columns/column1/.style={column name=Density},
-    columns/column2/.style={column name=Kruskal (ms)},
-    columns/column3/.style={column name=Prim (ms)},
+    columns/column1/.style={column name=VertextCount},
+    columns/column2/.style={column name=Kruskal20 (ms)},
+    columns/column3/.style={column name=Kruskal60 (ms)},
+    columns/column4/.style={column name=Kruskal99 (ms)},
+    columns/column5/.style={column name=Prim20 (ms)},
+    columns/column6/.style={column name=Prim60 (ms)},
+    columns/column7/.style={column name=Prim99 (ms)},
     every head row/.style={before row=\toprule,after row=\midrule},
     every last row/.style={after row=\bottomrule}
 ]{\datatable}
-\caption{Tabela średnich wyników w milisekundach dla algorytmu Forda-Fulkersona i Edmondsa-Karpa dla Macierzy sąsiedztwa}
+\caption{Tabela średnich wyników w milisekundach dla algorytmu Forda-Fulkersona i Edmondsa-Karpa dla Listy sąsiedztwa}
 \end{table}
 
 \subsubsection{Wykresy Typu 1 dla Forda-Fulkersona i Edmondsa-Karpa}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{../Python/charts_type1/Typ1_MAX_FLOW_Lista_sąsiedztwa_wykres.png}
+    \includegraphics[scale=0.4]{../Python/charts_type1/Typ1_MAX_FLOW_AdjacencyList_wykres.png}
     \caption{Czasy wykonania algorytmów Forda-Fulkersona i Edmondsa-Karpa dla Listy sąsiedztwa}
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{../Python/charts_type1/Typ1_MAX_FLOW_Macierz_sąsiedztwa_wykres.png}
+    \includegraphics[scale=0.4]{../Python/charts_type1/Typ1_MAX_FLOW_AdjacencyMatrix_wykres.png}
     \caption{Czasy wykonania algorytmów Forda-Fulkersona i Edmondsa-Karpa dla Macierzy sąsiedztwa}
 \end{figure}
 
@@ -512,31 +513,19 @@ przedstawiono na wykresach, gdzie oś X to rozmiar tablicy, a oś Y to czas wyko
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{../Python/charts_type2/Typ2_MAX_FLOW_gestosc20_wykres.png}
+    \includegraphics[scale=0.4]{../Python/charts_type2/Typ2_MAX_FLOW_gestosc20_wykres.png}
     \caption{Czasy wykonania algorytmów Forda-Fulkersona i Edmondsa-Karpa dla gęstości 20\%}
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{../Python/charts_type2/Typ2_MAX_FLOW_gestosc40_wykres.png}
-    \caption{Czasy wykonania algorytmów Forda-Fulkersona i Edmondsa-Karpa dla gęstości 40\%}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{../Python/charts_type2/Typ2_MAX_FLOW_gestosc60_wykres.png}
+    \includegraphics[scale=0.4]{../Python/charts_type2/Typ2_MAX_FLOW_gestosc60_wykres.png}
     \caption{Czasy wykonania algorytmów Forda-Fulkersona i Edmondsa-Karpa dla gęstości 60\%}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{../Python/charts_type2/Typ2_MAX_FLOW_gestosc80_wykres.png}
-    \caption{Czasy wykonania algorytmów Forda-Fulkersona i Edmondsa-Karpa dla gęstości 80\%}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{../Python/charts_type2/Typ2_MAX_FLOW_gestosc100_wykres.png}
-    \caption{Czasy wykonania algorytmów Forda-Fulkersona i Edmondsa-Karpa dla gęstości 100\%}
+    \includegraphics[scale=0.4]{../Python/charts_type2/Typ2_MAX_FLOW_gestosc99_wykres.png}
+    \caption{Czasy wykonania algorytmów Forda-Fulkersona i Edmondsa-Karpa dla gęstości 99\%}
 \end{figure}
 
 \section{Podsumowanie}
@@ -547,10 +536,9 @@ Jednakże ta różnica nie powinna być rzędu setek i może to wynikać z róż
 Podobne różnice widać w przypadku problemów najkrótszej ścieżki oraz maksymalnego przepływu, gdzie algorytm Dijkstry jest szybszy niż algorytm Bellmana-Forda, a algorytm Edmondsa-Karpa jest szybszy niż algorytm Forda-Fulkersona.
 Te różnice również sięgają podobnej skali co w wypadku problemu MST. 
 
-Kolejne ciekawe zjawiska można także zauważyć w wykonaniu algorytmu Kruskala i Prima na różnych reprezentacjach grafu.
-W przypadku listy sąsiedztwa czas wykonania algorytmu kruskala, czas ten rośnie dla coraz większych gęstości grafu, by potem spaść dla 100\% gęstości.
-Takie zjawisko nie występuje w przypadku macierzy sąsiedztwa, gdzie czas wykonania algorytmu Kruskala rośnie wraz z gęstością grafu. Podobne zjawisko występuje dla algorytmu
-Bellmana-Forda, gdzie gdy gęstość grafu rośnie, czas wykonania spada.
+Algorytmy zachowały się zgodnie z oczekiwaniami i bez większych niespodzianek, ich czas wykonania rośnie w sposób zbliżony do wykładniczego względem ilości wierzchołków w grafie.
+Dodatkowo, możemy zauważyć dziwne wyniki w postaci 0 w tabelah, dla algorytmów. Wynikają one ze skali pomiarów, gdzie pomiar prowadzony był
+w milisekundach, a czas wykonania algorytmu był mniejszy niż 1 milisekunda, co skutkowało zaokrągleniem do 0.
 
 Wyniki jasno pokazują, które algorytmy sprawdzą się najlepiej w każdym wymienionym problemie i poza przypadkami tzw. granicznymi, w większości będą one używane.
 \section{Literatura}

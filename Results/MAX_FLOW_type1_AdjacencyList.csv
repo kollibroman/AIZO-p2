@@ -1,4 +1,4 @@
-VertexCount,Ford-Fulkerson-DFS_density20,Ford-Fulkerson-DFS_density60,Ford-Fulkerson-DFS_density99,Ford-Fulkerson-BFS_density20,Ford-Fulkerson-BFS_density60,Ford-Fulkerson-BFS_density99
+Wierzcholki,Ford-Fulkerson-DFS20,Ford-Fulkerson-DFS60,Ford-Fulkerson-DFS99,Ford-Fulkerson-BFS20,Ford-Fulkerson-BFS60,Ford-Fulkerson-BFS99
 100,7,20,30,1,1,2
 250,103,269,471,7,19,30
 300,143,496,777,13,34,53

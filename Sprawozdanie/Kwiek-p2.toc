@@ -23,13 +23,13 @@
 \contentsline {subsubsection}{\numberline {8.1.1}Tabele}{8}{subsubsection.8.1.1}%
 \contentsline {subsubsection}{\numberline {8.1.2}Wykresy Typu 1 dla Kruskala i Prima}{8}{subsubsection.8.1.2}%
 \contentsline {subsubsection}{\numberline {8.1.3}Wykresy Typu 2 dla Kruskala i Prima}{9}{subsubsection.8.1.3}%
-\contentsline {subsection}{\numberline {8.2}Problem najkrótszej ścieżki}{11}{subsection.8.2}%
-\contentsline {subsubsection}{\numberline {8.2.1}Tabele}{11}{subsubsection.8.2.1}%
+\contentsline {subsection}{\numberline {8.2}Problem najkrótszej ścieżki}{10}{subsection.8.2}%
+\contentsline {subsubsection}{\numberline {8.2.1}Tabele}{10}{subsubsection.8.2.1}%
 \contentsline {subsubsection}{\numberline {8.2.2}Wykresy Typu 1 dla Dijkstry i Bellmana-Forda}{11}{subsubsection.8.2.2}%
 \contentsline {subsubsection}{\numberline {8.2.3}Wykresy Typu 2 dla Dijkstry i Bellmana-Forda}{12}{subsubsection.8.2.3}%
-\contentsline {subsection}{\numberline {8.3}Problem maksymalnego przepływu}{15}{subsection.8.3}%
-\contentsline {subsubsection}{\numberline {8.3.1}Tabele}{15}{subsubsection.8.3.1}%
-\contentsline {subsubsection}{\numberline {8.3.2}Wykresy Typu 1 dla Forda-Fulkersona i Edmondsa-Karpa}{15}{subsubsection.8.3.2}%
-\contentsline {subsubsection}{\numberline {8.3.3}Wykresy Typu 2 dla Forda-Fulkersona i Edmondsa-Karpa}{16}{subsubsection.8.3.3}%
-\contentsline {section}{\numberline {9}Podsumowanie}{19}{section.9}%
-\contentsline {section}{\numberline {10}Literatura}{19}{section.10}%
+\contentsline {subsection}{\numberline {8.3}Problem maksymalnego przepływu}{13}{subsection.8.3}%
+\contentsline {subsubsection}{\numberline {8.3.1}Tabele}{13}{subsubsection.8.3.1}%
+\contentsline {subsubsection}{\numberline {8.3.2}Wykresy Typu 1 dla Forda-Fulkersona i Edmondsa-Karpa}{14}{subsubsection.8.3.2}%
+\contentsline {subsubsection}{\numberline {8.3.3}Wykresy Typu 2 dla Forda-Fulkersona i Edmondsa-Karpa}{15}{subsubsection.8.3.3}%
+\contentsline {section}{\numberline {9}Podsumowanie}{16}{section.9}%
+\contentsline {section}{\numberline {10}Literatura}{16}{section.10}%

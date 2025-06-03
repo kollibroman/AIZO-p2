@@ -1,4 +1,4 @@
-VertexCount,Dijkstra_density20,Dijkstra_density60,Dijkstra_density99,Bellman-Ford_density20,Bellman-Ford_density60,Bellman-Ford_density99
+Wierzcholki,Dijkstra20,Dijkstra60,Dijkstra99,Bellman-Ford20,Bellman-Ford60,Bellman-Ford99
 100,0,0,0,3,2,1
 250,0,0,0,54,34,18
 300,0,0,0,99,58,31
