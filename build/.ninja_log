@@ -1,7 +1,7 @@
 # ninja log v6
-1	278	1748933913411989312	CMakeFiles/Projekt2.dir/main.cpp.o.ddi	7f029dd53f2007a5
-278	290	1748933913701488287	CMakeFiles/Projekt2.dir/main.cpp.o.modmap	68c48aa3db5aac6f
-278	290	1748933913701488287	CMakeFiles/Projekt2.dir/CXX.dd	68c48aa3db5aac6f
-278	290	1748933913701488287	/home/kollibroman/Studia/AIZO/Projekt2/build/CMakeFiles/Projekt2.dir/CXXModules.json	68c48aa3db5aac6f
-5577	5802	1748933918988900920	Projekt2	7089223376a18aba
-291	5573	1748933913702028237	CMakeFiles/Projekt2.dir/main.cpp.o	792d5cf07b97e8fb
+2	303	1748933986871103001	CMakeFiles/Projekt2.dir/main.cpp.o.ddi	7f029dd53f2007a5
+304	319	1748933987187319660	CMakeFiles/Projekt2.dir/main.cpp.o.modmap	68c48aa3db5aac6f
+304	319	1748933987187319660	CMakeFiles/Projekt2.dir/CXX.dd	68c48aa3db5aac6f
+304	319	1748933987187319660	/home/kollibroman/Studia/AIZO/Projekt2/build/CMakeFiles/Projekt2.dir/CXXModules.json	68c48aa3db5aac6f
+5704	5874	1748933992573649714	Projekt2	7089223376a18aba
+319	5703	1748933987188244503	CMakeFiles/Projekt2.dir/main.cpp.o	792d5cf07b97e8fb

@@ -33,7 +33,7 @@ public:
     }
 
     static std::unique_ptr<AdjacencyMatrix> graphDataToAdjMatrix(const GraphData& data, bool isDirected) {
-        auto adjMatrix = std::make_unique<AdjacencyMatrix>(data.numVertices);
+        auto adjMatrix = std::make_unique<AdjacencyMatrix>(data.numVertices, isDirected);
 
         for (const auto& edge : data.edges) {
             adjMatrix->addEdge(edge.first(), edge.second(), edge.third());

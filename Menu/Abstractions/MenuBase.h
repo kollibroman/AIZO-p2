@@ -34,30 +34,24 @@ protected:
         std::cin.get();
     }
 
-    // New simple menu implementation
     void runMenu(const std::string& title, const std::vector<std::string>& options, 
                  const std::function<void(int)>& handler) {
         int choice = 0;
         bool running = true;
         
         while (running) {
-            
-            // Display title
+
             std::cout << "\n=== " << title << " ===\n\n";
-            
-            // Display menu options
+
             for (size_t i = 0; i < options.size(); ++i) {
                 std::cout << options[i] << "\n";
             }
-            
-            // Get user input
+
             std::cout << "\nEnter your choice: ";
             std::cin >> choice;
-            
-            // Clear input buffer
+
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            
-            // Validate input
+
             if (std::cin.fail()) {
                 std::cin.clear();
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -65,11 +59,9 @@ protected:
                 std::cin.get();
                 continue;
             }
-            
-            // Adjust choice to 0-based index
+
             choice--;
-            
-            // Handle choice
+
             if (choice >= 0 && choice < static_cast<int>(options.size())) {
                 handler(choice);
             } else {
